@@ -149,7 +149,7 @@ map("n", "<A-Down>", ':put=repeat(nr2char(10), v:count1)|silent ""]+<CR>', { nor
 
 -- Change current working directory locally and print cwd after that,
 -- see https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-map("n", "<Space>cd", "<cmd>lcd %:p:h<CR><cmd>pwd<CR>")
+map("n", "<Space><Space>", "<cmd>lcd %:p:h<CR><cmd>pwd<CR>", { noremap = true, silent = false})
 
 -- Copy entire buffer.
 map("n", "<Space>y", "<cmd>%yank<cr><cmd>echo 'Copied all lines'<CR>")
