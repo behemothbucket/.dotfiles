@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 local function branch_name()
   local branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
   if branch ~= "" then
-    return branch
+    return " " .. branch
   else
     return ""
   end

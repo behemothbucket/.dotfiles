@@ -21,7 +21,7 @@ return require("packer").startup(function(use)
 
   use { "stevearc/dressing.nvim" }
 
-  -- use { "sindrets/diffview.nvim" }
+  use { "sindrets/diffview.nvim" }
 
   use { "tpope/vim-surround" }
 
