@@ -100,10 +100,10 @@ vim.diagnostic.config {
 
 --Gutter icons
 local signs = {
-  Error = "✘",
+  Error = "",
   Warn = "",
   Hint = "",
-  Information = "?",
+  Info = "",
 }
 
 for type, icon in pairs(signs) do

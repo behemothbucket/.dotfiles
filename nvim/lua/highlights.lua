@@ -35,7 +35,7 @@ local gruber_darker_wisteria   = "#9e95c7"
 vim.api.nvim_set_hl(0, "CursorLine", { bg = gruber_darker_bg_p1, fg = "NONE" })
 vim.api.nvim_set_hl(0, "Normal", { bg = gruber_darker_bg, fg = gruber_darker_fg })
 vim.api.nvim_set_hl(0, "NormalNC", { link = "Normal" })
-vim.api.nvim_set_hl(0, "LineNr", { bg = gruber_darker_bg, fg = gruber_darker_bg_p4 })
+vim.api.nvim_set_hl(0, "LineNr", { bg = gruber_darker_bg, fg = Gray_color })
 vim.api.nvim_set_hl(0, "CursorLineNR", { bg = gruber_darker_bg, fg = gruber_darker_yellow })
 vim.api.nvim_set_hl(0, "NonText", { link = "Normal" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = gruber_darker_bg })
@@ -47,17 +47,17 @@ vim.api.nvim_set_hl(0, "Substitute", { link = "IncSearch" })
 vim.api.nvim_set_hl(0, "Search", { link = "IncSearch" })
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
 vim.api.nvim_set_hl(0, "Pmenu", { link = "Normal" })
-vim.api.nvim_set_hl(0, "PmenuSel", { bg = gruber_darker_bg_p1 })
+vim.api.nvim_set_hl(0, "PmenuSel", { bg = gruber_darker_niagara_m2 })
 vim.api.nvim_set_hl(0, "PmenuThumb", { bg = gruber_darker_bg_p3 })
 vim.api.nvim_set_hl(0, "ModeMsg", { link = "Normal" })
 vim.api.nvim_set_hl(0, "TabLineSel", { link = "Normal" })
 vim.api.nvim_set_hl(0, "WarningMsg", { fg = gruber_darker_yellow, bg = gruber_darker_bg })
-vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = Gray_color, bg = "NONE" })
 vim.api.nvim_set_hl(0, "MatchParen", { bg = gruber_darker_bg_p4 })
 vim.api.nvim_set_hl(0, "Title", { link = "Pmenu" })
 vim.api.nvim_set_hl(0, "Comment", { fg = Gray_color, italic = true })
 vim.api.nvim_set_hl(0, "Directory", { fg = gruber_darker_quartz, bold = true })
-vim.api.nvim_set_hl(0, "WinSeparator", { fg = gruber_darker_bg_p4, bg = gruber_darker_bg_m1 })
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = Gray_color, bg = gruber_darker_bg_m1 })
 
 --To-do
 vim.api.nvim_set_hl(0, "Todo", { fg = "#4BA8FF", bg = "#0b1e33" })
@@ -120,8 +120,8 @@ vim.api.nvim_set_hl(0, "@exception", { link = "Exception" })
 --Languanges
 vim.api.nvim_set_hl(0, "@css.property_name", { fg = Gray_color })
 
-vim.api.nvim_set_hl(0, "@c.primitive_type", { link = "@keyword" })
-vim.api.nvim_set_hl(0, "@c.function_identifier", { link = "@function" })
+vim.api.nvim_set_hl(0, "@c.primitive_type", { link = "@type" })
+vim.api.nvim_set_hl(0, "@c.function_identifier", { link = "@variable" })
 
 -- *Type    int, long, char, etc.
 --  StorageClass  static, register, volatile, etc.
@@ -137,9 +137,9 @@ vim.api.nvim_set_hl(0, "@c.function_identifier", { link = "@function" })
 
 --Diagnostic
 vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = gruber_darker_red })
-vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = gruber_darker_brown })
+vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = gruber_darker_yellow })
 vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = Gray_color })
-vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = gruber_darker_green })
+vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = "#4BA8FF" })
 vim.api.nvim_set_hl(0, "DiagnosticError", { link = "DiagnosticSignError" })
 vim.api.nvim_set_hl(0, "DiagnosticWarn", { link = "DiagnosticSignWarn" })
 vim.api.nvim_set_hl(0, "DiagnosticHint", { link = "DiagnosticSignHint" })

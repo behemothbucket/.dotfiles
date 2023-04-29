@@ -11,6 +11,12 @@ null_ls.setup {
     null_ls.builtins.code_actions.shellcheck,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.clang_format,
-    null_ls.builtins.diagnostics.cpplint,
+    null_ls.builtins.diagnostics.cpplint.with({
+      diagnostic_config = {
+        signs = true,
+        update_in_insert = false,
+        severity_sort = true,
+      }
+    })
   },
 }

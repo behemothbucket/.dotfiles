@@ -69,7 +69,7 @@ require("oil").setup({
     padding = 2,
     max_width = 40,
     max_height = 15,
-    border = "rounded",
+    border = "single",
     win_options = {
       winblend = 0,
     },

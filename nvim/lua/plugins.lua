@@ -74,11 +74,11 @@ return require("packer").startup(function(use)
   use { 'shadowofseaice/yabs.nvim',
     config = function()
       require 'yabs'.setup {
-        position = { 'NE' },
+        position = { 'S' }, -- {'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N', 'C'}
         settings = {
           { 'name' },
-          -- { 'icon', 'bufnr', 'bufname', 'lnum',  'line' },
-          -- { 'path', 'name',  'bufid' },
+          { 'icon', 'bufnr', 'bufname', 'lnum',  'line' },
+          { 'path', 'name',  'bufid' },
         },
         keymap = {
           close    = "D",    -- Close buffer. Default D
@@ -102,7 +102,7 @@ return require("packer").startup(function(use)
           sortinit = "i",    -- Sort by file name initial #, default i
         },
         rnu = false,
-        border = "single",
+        border = "shadow",
         -- symbols = {
           -- at most two of these icons can be shown for a given buffer
           -- current   = "C", -- default 
