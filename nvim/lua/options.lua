@@ -17,7 +17,7 @@ opt.ff = "unix"
 opt.laststatus = 3 -- statusline per neovim instance
 -- opt.statusline = "%=%t%=[%{&ff}] %p%%"
 -- opt.statusline = "%=%t%=[%{&ff}] %p%%"
-opt.statusline = "%t"
+opt.statusline = "%t   %{get(b:, 'branch_name', '')}"
 opt.showtabline = 0 -- Tabs on/off
 -- opt.tabline = "" -- Only filename in tabs
 -- opt.pumblend = 10 -- Popup blend

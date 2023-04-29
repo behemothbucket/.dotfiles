@@ -116,7 +116,7 @@ return require("packer").startup(function(use)
 
   -- use { "kkga/vim-envy" }
 
-  -- use { "nvim-treesitter/playground" }
+  use { "nvim-treesitter/playground" }
   --
   use { "nvim-telescope/telescope.nvim" }
 
@@ -221,6 +221,10 @@ return require("packer").startup(function(use)
   use { "akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup {
       direction = 'float',
+      float_opts = {
+        width = 80,
+        height = 20,
+      }
     }
   end }
 

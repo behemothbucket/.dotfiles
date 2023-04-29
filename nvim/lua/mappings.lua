@@ -107,9 +107,7 @@ map("n", "/", [[/\v]])
 
 --Escape -> jj
 map("i", "jj", "<Esc>", { nowait = true })
-map("i", "kk", "<Esc>", { nowait = true })
 map("t", "jj", "<C-Bslash><C-n>", { nowait = true })
-map("t", "kk", "<C-Bslash><C-n>", { nowait = true })
 map("t", "<Esc>", "<C-Bslash><C-n>", { nowait = true })
 
 --Open URL in browser (Windows
