@@ -107,7 +107,7 @@ alias enable_webcam="sudo modprobe uvcvideo"
 alias toggle_l2tp_SmartFinance="nmcli c show --active | grep SmartFinance && nmcli c down SmartFinance || nmcli c up SmartFinance"
 export VISUAL="/usr/bin/nvim"
 export EDITOR="$VISUAL"
-export FZF_DEFAULT_OPTS="--color=bg+:#0b1e33,fg+:#4BA8FF,gutter:-1"
+export FZF_DEFAULT_OPTS="--color=bg+:#282828,fg+:#95a99f,gutter:-1"
 alias luamake=/home/nonh/Загрузки/lua-language-server/3rd/luamake/luamake
 export PATH="${HOME}/.config/lsp/lua-language-server/bin:${PATH}"
 export NVM_DIR="$HOME/.nvm"
