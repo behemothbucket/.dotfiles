@@ -103,7 +103,7 @@ local signs = {
   Error = "✘",
   Warn = "",
   Hint = "",
-  Information = "󰋼",
+  Information = "?",
 }
 
 for type, icon in pairs(signs) do
