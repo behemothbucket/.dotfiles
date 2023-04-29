@@ -39,18 +39,18 @@ opt.splitright = true
 opt.splitbelow = true
 
 vim.g.clipboard = {
- name = "xsel",
- copy = {
-  ["+"] = "xsel --nodetach -i -b",
-  ["*"] = "xsel --nodetach -i -p",
- },
- paste = {
-  ["+"] = "xsel  -o -b",
-  ["*"] = "xsel  -o -b",
- },
- cache_enabled = 1,
+  name = 'win32yank',
+  copy = {
+     ["+"] = 'win32yank.exe -i --crlf',
+     ["*"] = 'win32yank.exe -i --crlf',
+   },
+  paste = {
+     ["+"] = 'win32yank.exe -o --lf',
+     ["*"] = 'win32yank.exe -o --lf',
+  },
+  cache_enabled = 0,
 }
-opt.clipboard = "unnamedplus"
+clipboard = "unnamedplus"
 
 opt.wildmenu = true
 opt.wildignorecase = true --Show matching brackets

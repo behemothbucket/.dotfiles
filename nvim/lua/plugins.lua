@@ -135,7 +135,7 @@ return require("packer").startup(function(use)
 
   -- use { "voldikss/vim-floaterm" }
 
-  -- use { "dstein64/vim-startuptime" }
+  use { "dstein64/vim-startuptime" }
 
   -- use { "kkga/vim-envy" }
 
