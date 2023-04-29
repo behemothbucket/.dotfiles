@@ -74,7 +74,6 @@ vim.api.nvim_set_hl(0, "@text.danger", { fg = "#FF8B64", bg = "#391a13" })
 --URI
 vim.api.nvim_set_hl(0, "@text.uri", { fg = gruber_darker_niagara, underline = true })
 
-
 --Markdown todo checkbox
 vim.api.nvim_set_hl(0, "@unchecked_list_item", { fg = "#F8F8F2" })
 vim.api.nvim_set_hl(0, "@checked_list_item", { fg = Gray_color, strikethrough = true })
@@ -110,8 +109,10 @@ vim.api.nvim_set_hl(0, "@punctuation.special", { link = "SpecialChar" })
 vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = gruber_darker_fg })
 vim.api.nvim_set_hl(0, "Special", { link = "@keyword" })
 -- vim.api.nvim_set_hl(0, "@property", { fg = Main_color })
--- vim.api.nvim_set_hl(0, "@conditional", { fg = Gray_color })
--- vim.api.nvim_set_hl(0, "@exception", { fg = Red_color })
+vim.api.nvim_set_hl(0, "Conditional", { link = "@keyword" })
+vim.api.nvim_set_hl(0, "@conditional", { link = "Conditional" })
+vim.api.nvim_set_hl(0, "Exception", { link = "@keyword" })
+vim.api.nvim_set_hl(0, "@exception", { link = "Exception" })
 -- vim.api.nvim_set_hl(0, "Number", { fg = "#225a99" })
 -- vim.api.nvim_set_hl(0, "Float", { link = "Number" })
 
@@ -142,12 +143,12 @@ vim.api.nvim_set_hl(0, "DiagnosticError", { link = "DiagnosticSignError" })
 vim.api.nvim_set_hl(0, "DiagnosticWarn", { link = "DiagnosticSignWarn" })
 vim.api.nvim_set_hl(0, "DiagnosticHint", { link = "DiagnosticSignHint" })
 vim.api.nvim_set_hl(0, "DiagnosticInfo", { link = "DiagnosticSignInfo" })
-vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#122f2f" })
-vim.api.nvim_set_hl(0, "DiffAdded", { link = "DiffAdd" })
-vim.api.nvim_set_hl(0, "DiffChange", { bg = "#392a13" })
-vim.api.nvim_set_hl(0, "DiffChanged", { link = "DiffChange" })
-vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#391a13", fg = gruber_darker_fg })
-vim.api.nvim_set_hl(0, "DiffRemoved", { link = "DiffDelete" })
+vim.api.nvim_set_hl(0, "DiffAdd", { fg = gruber_darker_fg, bg = "#0A2517" })
+vim.api.nvim_set_hl(0, "DiffAdded", { fg = Green_color })
+vim.api.nvim_set_hl(0, "DiffChange", { link = "@text.warning" })
+vim.api.nvim_set_hl(0, "DiffChanged", { fg = Yellow_color })
+vim.api.nvim_set_hl(0, "DiffDelete", { link = "@text.danger" })
+vim.api.nvim_set_hl(0, "DiffRemoved", { fg = Red_color })
 vim.api.nvim_set_hl(0, "DiffText", { link = "DiffAdd" })
 --Git
 vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = gruber_darker_green })
@@ -156,7 +157,6 @@ vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = gruber_darker_red })
 
 --Plugins
 -- vim.api.nvim_set_hl(0, "ZenBg", { bg = "#0C0C0C" })
---
 --
 -- vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = Main_color })
 -- vim.api.nvim_set_hl(0, "NeoTreeGitUnstaged", { fg = Main_color })
