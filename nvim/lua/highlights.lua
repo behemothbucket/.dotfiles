@@ -33,7 +33,6 @@ local gruber_darker_wisteria   = "#9e95c7"
 
 --Main
 vim.api.nvim_set_hl(0, "CursorLine", { bg = gruber_darker_bg_p1, fg = "NONE" })
-vim.api.nvim_set_hl(0, "Cursor", { bg = gruber_darker_yellow })
 vim.api.nvim_set_hl(0, "Normal", { bg = gruber_darker_bg, fg = gruber_darker_fg })
 vim.api.nvim_set_hl(0, "NormalNC", { link = "Normal" })
 vim.api.nvim_set_hl(0, "LineNr", { bg = gruber_darker_bg, fg = gruber_darker_bg_p4 })
@@ -134,9 +133,9 @@ vim.api.nvim_set_hl(0, "@c.function_identifier", { link = "@function" })
 --   Debug    debugging statements
 
 --Diagnostic
-vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = gruber_darker_red_p1 })
+vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = gruber_darker_red })
 vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = gruber_darker_brown })
-vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = gruber_darker_bg_p4 })
+vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = Gray_color })
 vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = gruber_darker_green })
 vim.api.nvim_set_hl(0, "DiagnosticError", { link = "DiagnosticSignError" })
 vim.api.nvim_set_hl(0, "DiagnosticWarn", { link = "DiagnosticSignWarn" })
@@ -179,7 +178,7 @@ vim.api.nvim_set_hl(0, "GitSignsDelete", { link = "DiffDelete" })
 vim.api.nvim_set_hl(0, "DevIconScheme", { fg = gruber_darker_red })
 
 --Dapui
-vim.fn.sign_define('DapBreakpoint', { text = '', texthl = "Error", linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpoint', { text = '', texthl = "Error", linehl = '', numhl = '' })
 vim.fn.sign_define('DapStopped', { text = '', texthl = "@text.warning", linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = "Error", linehl = '', numhl = '' })
 vim.fn.sign_define('DapLogPoint', { text = '', texthl = "Error", linehl = '', numhl = '' })
