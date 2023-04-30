@@ -32,7 +32,8 @@ local gruber_darker_niagara    = "#96a6c8"
 local gruber_darker_wisteria   = "#9e95c7"
 
 --Main
-vim.api.nvim_set_hl(0, "CursorLine", { bg = gruber_darker_bg_p1, fg = "NONE" })
+-- vim.api.nvim_set_hl(0, "CursorLine", { bg = gruber_darker_bg_p1, fg = "NONE" })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = "NONE", fg = "NONE" })
 vim.api.nvim_set_hl(0, "Normal", { bg = gruber_darker_bg, fg = gruber_darker_fg })
 vim.api.nvim_set_hl(0, "NormalNC", { link = "Normal" })
 vim.api.nvim_set_hl(0, "LineNr", { bg = gruber_darker_bg, fg = Gray_color })

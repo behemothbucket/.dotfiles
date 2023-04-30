@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 local cmd = vim.cmd
-local dap = require("dap")
-local dapui = require("dapui")
+-- local dap = require("dap")
+-- local dapui = require("dapui")
 
 --ZenMode
 -- map("n", "<Space>z", ":ZenMode<CR>", { noremap = true, silent = true })
@@ -168,25 +168,25 @@ end, {
 map("i", "<A-;>", "<Esc>A;<Esc>i");
 
 --Dap
-map('n', '<F5>', function()
-  cmd("silent w")
-  dap.continue()
-end)
-map('n', '<F10>', dap.step_over)
-map('n', '<F11>', dap.step_into)
-map('n', '<F12>', dap.step_out)
-map('n', '<Space>b', dap.toggle_breakpoint)
-map("n", "<Space>cb", function()
-  dap.clear_breakpoints()
-  cmd("echo 'Breakpoints cleared'")
-end)
-map("n", "<Space>dd", dap.terminate)
-map("n", "<Space>dl", function()
-  cmd("silent w")
-  dap.run_last()
-  cmd("echo 'Running last session'")
-end)
-map('n', '<Space>lp', function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+-- map('n', '<F5>', function()
+--   cmd("silent w")
+--   dap.continue()
+-- end)
+-- map('n', '<F10>', dap.step_over)
+-- map('n', '<F11>', dap.step_into)
+-- map('n', '<F12>', dap.step_out)
+-- map('n', '<Space>b', dap.toggle_breakpoint)
+-- map("n", "<Space>cb", function()
+--   dap.clear_breakpoints()
+--   cmd("echo 'Breakpoints cleared'")
+-- end)
+-- map("n", "<Space>dd", dap.terminate)
+-- map("n", "<Space>dl", function()
+--   cmd("silent w")
+--   dap.run_last()
+--   cmd("echo 'Running last session'")
+-- end)
+-- map('n', '<Space>lp', function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
 
 --Dapui
-map('n', "<Space>du", dapui.toggle)
+-- map('n', "<Space>du", dapui.toggle)

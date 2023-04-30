@@ -118,11 +118,11 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Iosevka Nerd Font Mono
+    family: IosevkaTerm Nerd Font Mono
     style: Regular
     # Bold font face
   bold:
-    family: Iosevka Nerd Font Mono
+    family: IosevkaTerm Nerd Font Mono
     style: Bold
     # Italic font face
   italic:
@@ -130,7 +130,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Iosevka Nerd Font Mono
+    family: IosevkaTerm Nerd Font Mono
     # The `style` can be specified to pick a specific face.
     style: Italic
     # Bold italic font face
@@ -163,6 +163,25 @@ font:
   # characters (Unicode points 2500 - 259f).
   #
   #builtin_box_drawing: true
+cursor:
+  style:
+    # Cursor shape
+    #
+    # Values for `shape`:
+    #   - ▇ Block
+    #   - _ Underline
+    #   - | Beam
+    shape: Block
+
+    # Cursor blinking state
+    #
+    # Values for `blinking`:
+    #   - Never: Prevent the cursor from ever blinking
+    #   - Off: Disable blinking by default
+    #   - On: Enable blinking by default
+    #   - Always: Force the cursor to always blink
+    blinking: Always
+  blink_interval: 500
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
@@ -175,7 +194,7 @@ colors:
     foreground: "#ffffff"
   cursor:
     text: "#000000"
-    cursor: "#ffffff"
+    cursor: "#ffdd33"
   normal:
     black: "#000000"
     red: "#571dc2"

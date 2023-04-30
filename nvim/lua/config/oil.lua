@@ -41,7 +41,7 @@ require("oil").setup({
     ["<S-h>"] = "actions.select_split",
     ["<C-t>"] = "actions.select_tab",
     ["<C-p>"] = "actions.preview",
-    ["<C-c>"] = "actions.close",
+    ["q"] = "actions.close",
     ["<C-l>"] = "actions.refresh",
     ["<BS>"] = "actions.parent",
     ["_"] = "actions.open_cwd",
@@ -69,7 +69,7 @@ require("oil").setup({
     padding = 2,
     max_width = 40,
     max_height = 15,
-    border = "single",
+    border = "rounded",
     win_options = {
       winblend = 0,
     },
