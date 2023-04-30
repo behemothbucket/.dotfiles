@@ -190,6 +190,9 @@ vim.fn.sign_define('LspInfoBorder', { link = "FloatBorder" })
 --Oil
 vim.api.nvim_set_hl(0, 'OilDir', { link = "Directory" })
 
+--Mason
+vim.api.nvim_set_hl(0, 'MasonHeader', { link = "StatusLine" })
+
 --Illuminate
 -- vim.cmd "hi IlluminatedWordText term=NONE gui=NONE"
 -- vim.cmd "hi IlluminatedWordWrite term=NONE gui=NONE"

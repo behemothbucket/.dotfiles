@@ -128,9 +128,9 @@ local mason, mason_tool_installer, mason_lsp_config = require("mason"), require(
 mason.setup({
   ui = {
     icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗"
+      package_installed = "󰄳",
+      package_pending = "󱑤",
+      package_uninstalled = "󰏔"
     }
   }
 })
