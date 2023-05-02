@@ -10,12 +10,12 @@ local cmd = vim.cmd
 map("n", "<Space>p", ":PackerSync<CR>", { noremap = true, silent = true, nowait = true })
 
 --ToggleTerm
-map("n", "<Bslash>t", ":ToggleTerm<CR>", { noremap = true, silent = true })
+-- map("n", "<Bslash>t", ":ToggleTerm<CR>", { noremap = true, silent = true })
 
 --Oil
 map("n", "<Bslash>f", ":Oil --float .<CR>", { noremap = true, silent = true })
 
---Jabs | Reach
+--Yabs
 map("n", "<Tab><Tab>", ":YABSOpen<CR>", { noremap = true, silent = true })
 
 --Harpoon

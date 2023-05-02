@@ -25,6 +25,13 @@ return require("packer").startup(function(use)
 
   use { "tpope/vim-surround" }
 
+  use {
+    'behemothbucket/gruber-darker-theme.nvim',
+    config = function()
+      require('gruber-darker').setup()
+    end
+  }
+
   -- use { 'toppair/reach.nvim',
   --   config = function()
   --     require('reach').setup({
@@ -190,7 +197,7 @@ return require("packer").startup(function(use)
   --   event = { "BufReadPost" },
   -- }
 
-  use { "cranberry-clockworks/coal.nvim" }
+  -- use { "cranberry-clockworks/coal.nvim" }
 
   -- use { "itchyny/vim-highlighturl" }
 

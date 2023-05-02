@@ -26,7 +26,7 @@ opt.scrolloff = 4     -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 2    -- Size of an indent
-opt.mouse = "nvc"       -- Enable mouse mode("a") or disable
+opt.mouse = "nvc"     -- Enable mouse mode("a") or disable
 opt.smartindent = true
 opt.spelllang = { "en" }
 opt.tabstop = 2
@@ -91,5 +91,4 @@ opt.undodir = vim.fn.expand "~/.config/nvim/undo"
 vim.g.markdown_recommended_style = 0
 
 --Floaterm
-cmd "let g:floaterm_height = 0.9 | let g:floaterm_title = 'Terminal'"
-
+-- cmd "let g:floaterm_height = 0.9 | let g:floaterm_title = 'Terminal'"
