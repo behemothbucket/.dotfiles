@@ -56,7 +56,17 @@
 
 ;; Manual
 (bb/set-emacs-frames "light")
+
+(defun bb/remove-underline-solarized()
+  "Remove underline from solarized-light theme."
+  (if (eq (car custom-enabled-themes) 'solarized-light)
+      (custom-set-faces
+       '(mode-line ((t (:underline nil))))
+       '(mode-line-inactive ((t (:underline nil)))))))
+
 (load-theme 'solarized-light t)
+
+(bb/remove-underline-solarized)
 
 (define-key global-map (kbd "<f12>") #'bb/toggle-theme)
 

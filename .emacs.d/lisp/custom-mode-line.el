@@ -592,9 +592,10 @@ level."
 		file-progress
 		"  "
 		time-and-date
+		"  "
 		))
 
-(prot-modeline-subtle-mode 1)
+;; (prot-modeline-subtle-mode 1)
 
 (require 'keycast)
 (setq keycast-mode-line-format "%2s%k%c%R")

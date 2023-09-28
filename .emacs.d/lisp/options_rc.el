@@ -193,7 +193,7 @@
 (setq dired-dwim-target t)
 
 ;; Numberline
-;; (global-display-line-numbers-mode 1)
+(global-display-line-numbers-mode 1)
 ;; Disable line numbers for some modes
 (dolist (mode '(org-mode-hook
 		term-mode-hook
