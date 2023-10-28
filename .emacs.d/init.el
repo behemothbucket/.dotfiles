@@ -317,8 +317,6 @@
 
 (use-package which-key
   :config
-  ;; (setq which-key-idle-delay 10000)
-  ;; (setq which-key-idle-secondary-delay 0.05)
   (which-key-setup-side-window-right)
   (which-key-mode))
 
@@ -351,8 +349,6 @@
   :config
   (add-hook 'go-mode-hook (lambda ()
                             (set (make-local-variable 'company-backends) '(company-go))
-			    (setq tab-width 4 indent-tabs-mode 4)
-			    (define-key go-mode-map (kbd "<f5>") 'multi-compile-run)
                             (company-mode))))
 (use-package go-rename)
 
@@ -360,14 +356,28 @@
   :config
   ;; Define function to call when go-mode loads
   (defun my-go-mode-hook ()
-    (add-hook 'before-save-hook 'gofmt-before-save) ; gofmt before every save
+    ;; Use goimports instead of go-fmt
+    (setq gofmt-command "goimports")
+    ;; Call Gofmt before saving
+    (add-hook 'before-save-hook 'gofmt-before-save)
     (setq gofmt-command "goimports")                ; gofmt uses invokes goimports
     (if (not (string-match "go" compile-command))   ; set compile command default
 	(set (make-local-variable 'compile-command)
-             "go run ."))
+	     "echo Building... && go build -v && eval ./${PWD##*/}")
+      ;; "echo Building... && go build -v && echo Testing... && go test -v && echo Linter... && golint")
+      (setq compilation-read-command nil)
+      )
 
+    (setq tab-width 4 indent-tabs-mode 4)
     ;; guru settings
-    (go-guru-hl-identifier-mode))                    ; highlight identifier
+    (go-guru-hl-identifier-mode)                    ; highlight identifier
+
+    (local-set-key (kbd "M-.") 'godef-jump)
+    (local-set-key (kbd "<f5>") 'compile)            ; Invoke compiler
+    (local-set-key (kbd "<f6>") 'recompile)          ; Redo most recent compile cmd
+    (local-set-key (kbd "M-]") 'next-error)         ; Go to next error (or msg)
+    (local-set-key (kbd "M-[") 'previous-error)     ; Go to previous error or msg
+    )
 
   ;; Connect go-mode-hook with the function we just defined
   (add-hook 'go-mode-hook 'my-go-mode-hook))
@@ -398,27 +408,27 @@
   :config
   (color-theme-approximate-on))
 
-;; (use-package treemacs
-;;   :defer
-;;   :demand
-;;   :config
-;;   (setq treemacs-position 'left
-;;         treemacs-width 30
-;;         treemacs-show-hidden-files t)
+(use-package treemacs
+  :defer
+  :demand
+  :config
+  (setq treemacs-position 'left
+        treemacs-width 30
+        treemacs-show-hidden-files t)
 
-;;   ;; (setq treemacs-no-png-images t)
+  ;; (setq treemacs-no-png-images t)
 
-;;   (treemacs-resize-icons 16)
+  (treemacs-resize-icons 16)
 
-;;   ;; Don't always focus the currently visited file
-;;   (treemacs-follow-mode -1)
+  ;; Don't always focus the currently visited file
+  (treemacs-follow-mode -1)
 
-;;   ;; (defun ct/treemacs-decrease-text-scale ()
-;;   ;;   (text-scale-decrease 1))
-;;   :bind
-;;   ("<f2>" . treemacs))
-;; ;; :hook
-;; ;; (treemacs-mode . ct/treemacs-decrease-text-scale))
+  ;; (defun ct/treemacs-decrease-text-scale ()
+  ;;   (text-scale-decrease 1))
+  :bind
+  ("C-c t" . treemacs))
+;; :hook
+;; (treemacs-mode . ct/treemacs-decrease-text-scale))
 
 
 ;; ;; (use-package highlight-indent-guides
@@ -426,29 +436,20 @@
 ;; ;;   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 ;; ;;   (setq highlight-indent-guides-method 'bitmap))
 
-;; (use-package lsp-treemacs)
+(use-package lsp-treemacs)
 
 ;; (use-package all-the-icons
 ;;   :delight
 ;;   :demand)
 
-;; (use-package treemacs-all-the-icons
-;;   :after treemacs
-;;   :config
-;;   (treemacs-load-theme "all-the-icons")
+(use-package treemacs-all-the-icons
+  :after treemacs
+  :config
+  (treemacs-load-theme "all-the-icons")
 
-;;   ;; Have to rely on customize to override the face to fix slanted inheritance form modus-theme
-;;                                         ; '(treemacs-all-the-icons-file-face ((t (:inherit treemacs-file-face))))
-;;   )
-
-;; (use-package treemacs-nerd-icons
-;;   :after treemacs
-;;   :config
-;;   (treemacs-load-theme "treemacs-icons"))
-
-;;   ;; Have to rely on customize to override the face to fix slanted inheritance form modus-theme
-;;   ; '(treemacs-all-the-icons-file-face ((t (:inherit treemacs-file-face))))
-;;   )
+  ;; Have to rely on customize to override the face to fix slanted inheritance form modus-theme
+                                        ; '(treemacs-all-the-icons-file-face ((t (:inherit treemacs-file-face))))
+  )
 
 ;; (use-package treemacs-tab-bar ;;treemacs-tab-bar if you use tab-bar-mode
 ;;   :after (treemacs)
@@ -937,8 +938,7 @@
 
 (use-package undo-fu-session
   :config
-  (setq undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git;-rebase-todo\\'"))
-  (undo-fu-session-global-mode))
+  (setq undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'")))
 
 (use-package undo-fu
   :config

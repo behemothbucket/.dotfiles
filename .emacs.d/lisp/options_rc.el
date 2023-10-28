@@ -11,6 +11,8 @@
 ;; Use no-littering to automatically set common paths to the new user-emacs-directory
 (use-package no-littering)
 
+(undo-fu-session-global-mode)
+
 (add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
 (setq frame-resize-pixelwise nil)
 (setq cursor-in-non-selected-windows nil)
@@ -240,7 +242,6 @@ rather than the whole path."
 
 ;;; Golang
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/go/bin"))
-(setenv "GOPATH" "/home/pingvi/goprojects")
 (add-to-list 'exec-path "/home/pingvi/go/bin")
 
 (provide 'options_rc)
