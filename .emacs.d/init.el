@@ -408,26 +408,26 @@
   :config
   (color-theme-approximate-on))
 
-(use-package treemacs
-  :defer
-  :demand
-  :config
-  (setq treemacs-position 'left
-        treemacs-width 30
-        treemacs-show-hidden-files t)
+;; (use-package treemacs
+;;   :defer
+;;   :demand
+;;   :config
+;;   (setq treemacs-position 'left
+;;         treemacs-width 30
+;;         treemacs-show-hidden-files t)
 
-  ;; (setq treemacs-no-png-images t)
+;;   ;; (setq treemacs-no-png-images t)
 
-  (treemacs-resize-icons 16)
+;;   (treemacs-resize-icons 16)
 
-  ;; Don't always focus the currently visited file
-  (treemacs-follow-mode -1)
+;;   ;; Don't always focus the currently visited file
+;;   (treemacs-follow-mode -1)
 
-  ;; (defun ct/treemacs-decrease-text-scale ()
-  ;;   (text-scale-decrease 1))
-  :bind
-  ("C-c t" . treemacs))
-;; :hook
+;;   ;; (defun ct/treemacs-decrease-text-scale ()
+;;   ;;   (text-scale-decrease 1))
+;;   :bind
+;;   ("C-c t" . treemacs))
+;; ;; :hook
 ;; (treemacs-mode . ct/treemacs-decrease-text-scale))
 
 
@@ -436,20 +436,20 @@
 ;; ;;   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 ;; ;;   (setq highlight-indent-guides-method 'bitmap))
 
-(use-package lsp-treemacs)
+;; (use-package lsp-treemacs)
 
 ;; (use-package all-the-icons
 ;;   :delight
 ;;   :demand)
 
-(use-package treemacs-all-the-icons
-  :after treemacs
-  :config
-  (treemacs-load-theme "all-the-icons")
+;; (use-package treemacs-all-the-icons
+;;   :after treemacs
+;;   :config
+;;   (treemacs-load-theme "all-the-icons")
 
   ;; Have to rely on customize to override the face to fix slanted inheritance form modus-theme
                                         ; '(treemacs-all-the-icons-file-face ((t (:inherit treemacs-file-face))))
-  )
+  ;; )
 
 ;; (use-package treemacs-tab-bar ;;treemacs-tab-bar if you use tab-bar-mode
 ;;   :after (treemacs)
@@ -462,7 +462,7 @@
 (use-package recentf
   :config
   (recentf-mode 1)
-  (setq recent-save-file "~/.emacs.d/recentf")
+  (setq recentf-save-file "~/.emacs.d/recentf")
   (setq recentf-auto-cleanup 'never)
   (setq recentf-max-menu-items 10)
   (setq recentf-max-saved-items 100)
@@ -506,9 +506,10 @@
   (setq lsp-signature-auto-activate nil)
   (setq lsp-go-use-gofumpt t)
   ;; (setq lsp-lens-enable t)
-  (setq lsp-signature-render-documentation nil)
+  ;; (setq lsp-signature-render-documentation nil)
   (setq lsp-eldoc-enable-hover nil)
   (setq lsp-eldoc-hook nil)
+  (setq lsp-ui-doc-enable nil)
   (setq lsp-modeline-code-actions-enable nil)
   (setq lsp-modeline-diagnostics-enable nil)
   (setq lsp-headerline-breadcrumb-enable nil)
@@ -938,7 +939,7 @@
 
 (use-package undo-fu-session
   :config
-  (setq undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'")))
+  (setq undo-fu-session-incompatible-files '(".go" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'")))
 
 (use-package undo-fu
   :config
@@ -1155,8 +1156,8 @@
   ;; a specific colour: `pulsar-pulse-line-red' is one of them.
 
   (add-hook 'next-error-hook 'pulsar-pulse-line-red)
-  (add-hook 'flycheck-next-error 'pulsar-pulse-line-yellow)
-  (add-hook 'flycheck-previous-error 'pulsar-pulse-line-)
+  (add-hook 'flycheck-next-error 'pulsar-pulse-line-red)
+  (add-hook 'flycheck-previous-error 'pulsar-pulse-line-red)
   (add-hook 'minibuffer-setup-hook 'pulsar-pulse-line-red)
   (add-hook 'minibuffer-setup-hook 'pulsar-pulse-line)
   (add-hook 'imenu-after-jump-hook 'pulsar-recenter-top)

@@ -3,18 +3,19 @@
 ;; This is options configuration
 ;;; Code:
 
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+;; (scroll-bar-mode -1)
+;; (tool-bar-mode -1)
 (tooltip-mode t)
-(menu-bar-mode -1)
+;; (menu-bar-mode -1)
 
 ;; Use no-littering to automatically set common paths to the new user-emacs-directory
 (use-package no-littering)
 
 (undo-fu-session-global-mode)
 
-(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
-(setq frame-resize-pixelwise nil)
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+(setq frame-resize-pixelwise t)
+
 (setq cursor-in-non-selected-windows nil)
 
 ;; Don't pop up UI dialogs when prompting

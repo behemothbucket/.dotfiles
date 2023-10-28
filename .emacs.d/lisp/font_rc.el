@@ -17,8 +17,9 @@
                    '(left-fringe    . 0)
                    '(right-fringe   . 0)
                    '(ns-transparent-titlebar . t)
-                   '(menu-bar-lines . 0)
-                   '(tool-bar-lines . 0)))))
+                   ;; '(menu-bar-lines . 0)
+                   ;; '(tool-bar-lines . 0)
+		   ))))
   (set-face-attribute 'default nil
                       :font font
                       :weight weight
