@@ -18,17 +18,14 @@ return {
       local coq = require "coq"
 
       local servers = {
-        "tsserver",
+        "gopls",
         "jsonls",
         "cssls",
         "html",
         "emmet_ls",
         "lua_ls",
         "bashls",
-        "taplo",
         "marksman",
-        "jdtls",
-        "lemminx",
         "yamlls",
       }
 
@@ -43,8 +40,6 @@ return {
               },
             },
           })
-        elseif lsp == "jdtls" then
-          -- Skipping jdtls...
         else
           lspconfig[lsp].setup(coq.lsp_ensure_capabilities {})
         end
@@ -178,21 +173,14 @@ return {
         "emmet-ls",
         "eslint_d",
         "html-lsp",
-        "java-debug-adapter",
-        "jdtls",
         "json-lsp",
         "jsonlint",
-        "lemminx",
         "lua-language-server",
-        "groovy-language-server",
-        "cbfmt",
         "marksman",
         "markdownlint",
         "shellcheck",
         "shfmt",
         "stylua",
-        "taplo",
-        "typescript-language-server",
         "xmlformatter",
       },
     },

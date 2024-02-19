@@ -8,8 +8,6 @@ g.coq_settings = { auto_start = "shut-up" }
 g.loaded_netrwPlugin = 1 -- Don't load netrw
 g.loaded_netrw = 1       -- gx won't work
 
-g.vimShotSavePath = "~/Документы/" -- Screenshot
-
 g.gist_is_private = true
 
 opt.number = true
@@ -99,4 +97,4 @@ vim.g.markdown_recommended_style = 0
 --Floaterm
 -- cmd "let g:floaterm_height = 0.9 | let g:floaterm_title = 'Terminal'"
 
-cmd [[colorscheme gruber-darker]]
+cmd [[colorscheme boo]]
