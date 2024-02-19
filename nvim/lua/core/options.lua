@@ -97,4 +97,9 @@ vim.g.markdown_recommended_style = 0
 --Floaterm
 -- cmd "let g:floaterm_height = 0.9 | let g:floaterm_title = 'Terminal'"
 
-cmd [[colorscheme boo]]
+require("boo-colorscheme").use({
+  italic = false, -- toggle italics
+  theme = "boo"
+})
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })

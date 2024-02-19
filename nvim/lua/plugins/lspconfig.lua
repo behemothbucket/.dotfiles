@@ -16,45 +16,48 @@ return {
     config = function()
       local lspconfig = require "lspconfig"
       local coq = require "coq"
+      local util = require 'lspconfig/util'
 
-      local servers = {
-        "gopls",
-        "jsonls",
-        "cssls",
-        "html",
-        "emmet_ls",
-        "lua_ls",
-        "bashls",
-        "marksman",
-        "yamlls",
-      }
-
-      for _, lsp in ipairs(servers) do
-        if lsp == "lua_ls" then
-          lspconfig.lua_ls.setup(coq.lsp_ensure_capabilities {
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { "vim" }, -- "Global vim" warning
-                },
-              },
+      lspconfig.lua_ls.setup(coq.lsp_ensure_capabilities {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" }, -- "Global vim" warning
             },
-          })
-        else
-          lspconfig[lsp].setup(coq.lsp_ensure_capabilities {})
-        end
-      end
+          },
+        },
+      })
 
-      -- Diagnostic list
-      -- vim.keymap.set("n", "<Space>e", function()
-      --   vim.diagnostic.setloclist { open = false } -- don't open and focus
-      --   local window = vim.api.nvim_get_current_win()
-      --   vim.cmd.lwindow()                          -- open+focus loclist if has entries, else close -- this is the magic toggle command
-      --   vim.api.nvim_set_current_win(window)       -- restore focus to window you were editing (delete this if you want to stay in loclist)
-      -- end, { buffer = bunr })
+      lspconfig.gopls.setup(coq.lsp_ensure_capabilities {
+        cmd = { 'gopls' },
+        filetypes = { 'go', 'go.mod' },
+        root_dir = util.root_pattern("go.mod", ".git"),
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+              unusedvariable = true,
+              unusedwrite = true,
+              fieldalignment = true,
+              nilness = true,
+              useany = true,
+            },
+            codelenses = {
+              generate = true,
+              run_govulncheck = true,
+              tidy = true,
+              upgrade_dependency = true,
+            },
+            hints = {
+              constantValues = true
+            },
+            staticcheck = true,
+            gofumpt = true,
+            semanticTokens = true,
+          }
+        }
+      })
 
-      -- Use LspAttach autocommand to only map the following keys
-      -- after the language server attaches to the current buffer
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
@@ -121,68 +124,6 @@ return {
       }
 
       require('lspconfig.ui.windows').default_options.border = 'rounded'
-
-      require("mason-lspconfig").setup({
-        ensure_installed = servers,
-        automatic_installation = true,
-      })
     end,
   },
-  -- formatters
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      local null_ls = require("null-ls")
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.diagnostics.eslint_d,
-          null_ls.builtins.code_actions.eslint_d,
-          null_ls.builtins.formatting.stylua.with {
-            extra_args = { "--config-path", vim.fn.expand "~/.config/stylua.toml" },
-          },
-          null_ls.builtins.diagnostics.shellcheck,
-          null_ls.builtins.code_actions.shellcheck,
-          null_ls.builtins.formatting.shfmt,
-          null_ls.builtins.formatting.markdownlint,
-          null_ls.builtins.diagnostics.markdownlint,
-          null_ls.builtins.formatting.xmlformat,
-          null_ls.builtins.formatting.yamlfix,
-          null_ls.builtins.diagnostics.yamllint,
-          -- null_ls.builtins.formatting.clang_format,
-          -- null_ls.builtins.diagnostics.cpplint.with({
-          --   diagnostic_config = {
-          --     signs = true,
-          --     update_in_insert = false,
-          --     severity_sort = true,
-          --   }
-          -- }),
-        },
-      })
-    end,
-  },
-  -- Mason
-  {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
-    build = ":MasonUpdate",
-    opts = {
-      ensure_installed = {
-        "pyright",
-        "bash-language-server",
-        "css-lsp",
-        "emmet-ls",
-        "eslint_d",
-        "html-lsp",
-        "json-lsp",
-        "jsonlint",
-        "lua-language-server",
-        "marksman",
-        "markdownlint",
-        "shellcheck",
-        "shfmt",
-        "stylua",
-        "xmlformatter",
-      },
-    },
-  }
 }

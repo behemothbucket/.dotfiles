@@ -1,29 +1,12 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  event = { "BufReadPost", "BufNewFile" },
-  cmd = { "TSUpdateSync" },
-  opts = {
-    ensure_installed = {
-      "typescript",
-      "javascript",
-      "css",
-      "html",
-      "sql",
-      "markdown",
-      "json5",
-      "jsdoc",
-      "java",
-      "lua",
-      "vimdoc",
-      "vim",
-      "query",
-      "c",
-      "comment",
-      "regex",
-    },
-    auto_install = true,
-    indent = { enable = true },
-    highlight = { enable = true },
-  }
+  'nvim-treesitter/nvim-treesitter',
+  config = function()
+    require 'nvim-treesitter.configs'.setup {
+      -- A list of parser names, or "all" (the five listed parsers should always be installed)
+      ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "go", "python", "javascript", "html", "sql", "json5", "comment", "regex", "markdown", "markdown_inline" },
+      highlight = {
+        enable = true,
+      },
+    }
+  end
 }

@@ -10,9 +10,6 @@ map({ 't', 'n' }, '<C-t>', buffalo.toggle_tab_menu, { noremap = true })
 -- Trouble
 -- map("n", "<Space>d", function() require("trouble").open() end)
 
--- NoNeckPain
-map("n", "<Space>z", ":NoNeckPain<CR>", { noremap = true, silent = true })
-
 --PackerSync
 -- map("n", "<Space>p", ":PackerSync<CR>", { noremap = true, silent = true, nowait = true })
 
@@ -32,9 +29,9 @@ map("n", "<Bslash>f", ":Oil --float .<CR>", { noremap = true, silent = true })
 -- map("n", "<Tab><Tab>", ":YABSOpen<CR>:call cursor(1, 1)<CR>", { noremap = true, silent = true })
 
 --Harpoon
--- map("n", "<Space>m", "<cmd>lua require('harpoon.mark').add_file()<CR><cmd>echo 'Harpoon: Mark added'<CR>",
---   { noremap = true, silent = true })
--- map("n", "<Bslash><Bslash>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true, silent = true })
+map("n", "<Space>a", "<cmd>lua require('harpoon.mark').add_file()<CR><cmd>echo 'Harpoon: Mark added'<CR>",
+  { noremap = true, silent = true })
+map("n", "<C-e>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true, silent = true })
 
 --Window
 -- map("n", "<Space>w", ":lua require('nvim-window').pick()<CR>", { silent = true })
@@ -109,7 +106,7 @@ map("n", "ff", ":HopChar2<CR>")
 -- map("n", "<Space>p", ":TroubleToggle<CR>")
 
 --Mov to start/end of line
-map("i", "<C-s>", "<ESC>I")
+map("i", "<C-a>", "<ESC>I")
 map("i", "<C-e>", "<ESC>A")
 
 --No highlight
@@ -131,17 +128,13 @@ map("n", "gx", ":silent !xdg-open <cfile><CR>", { noremap = true, silent = true 
 -- map("n", "gx", ":execute '!xdg-open ' .. shellescape(expand('<cfile>'), v:true)", { noremap = true, silent = true })
 
 --Plugins file
-if vim.fn.has("unix") then
-  map("n", "<F3>", ":e ~/.config/nvim/lua/<CR>", { noremap = true, silent = true })
-elseif vim.fn.has("win32") or vim.fn.has("win64") then
-  map("n", "<F3>", ":e ~/cculpc/AppData/Local/nvim<CR>", { noremap = true, silent = true })
-end
+map("n", "<F3>", ":e ~/.config/nvim/lua/<CR>", { noremap = true, silent = true })
 
--- nvim-toggler emacs
-map("n", '<c-i>', require('nvim-toggler').toggle, { noremap = true, silent = true, nowait = true })
+-- nvim-toggler emacs true
+-- map("n", '<c-i>', require('nvim-toggler').toggle, { silent = true, nowait = true })
 
 -- Telescope live_grep
-map("n", "fw", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+map("n", "lg", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 
 --Source current file
 map("n", "<Space>ss", "<cmd>w | so%<CR><cmd>echo 'Sourced'<cr>", { noremap = true, nowait = true })
@@ -188,13 +181,13 @@ end, {
 })
 
 -- Overseer
-map("n", '<F5>', ":w<CR>:echo 'Saved'<CR>:OverseerRun<CR>", { noremap = true, silent = true })
+--map("n", '<F5>', ":w<CR>:echo 'Saved'<CR>:OverseerRun<CR>", { noremap = true, silent = true })
 
 -- Close quickfix list
 map("n", "<Space>q", ":cclose<CR>:echo 'Quickfix closed'<CR>", { noremap = true })
 
 -- insert semicolon in the end
-map("i", "<A-;>", "<Esc>A;<Esc>i");
+map("i", "<A-;>", "<Esc>A;<Esc>i")
 
 --Dap
 -- map('n', '<F5>', function()
