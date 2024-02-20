@@ -19,13 +19,9 @@ opt.cursorline = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.ff = "unix"
-opt.laststatus = 3 -- statusline per neovim instance
--- opt.statusline = "%=%t%=[%{&ff}] %p%%"
--- opt.statusline = "%=%t%=[%{&ff}] %p%%"
-opt.statusline = "%t %{get(b:, 'branch_name', '')}"
-opt.showtabline = 0 -- Tabs on/off
--- opt.tabline = "" -- Only filename in tabs
--- opt.pumblend = 10 -- Popup blend
+opt.laststatus = 3    -- statusline per neovim instance
+opt.showtabline = 0   -- Tabs on/off
+opt.pumblend = 50     -- Popup blend/transparency
 opt.pumheight = 10    -- Maximum number of entries in a popup
 opt.scrolloff = 4     -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
@@ -96,10 +92,3 @@ vim.g.markdown_recommended_style = 0
 
 --Floaterm
 -- cmd "let g:floaterm_height = 0.9 | let g:floaterm_title = 'Terminal'"
-
-require("boo-colorscheme").use({
-  italic = false, -- toggle italics
-  theme = "boo"
-})
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })

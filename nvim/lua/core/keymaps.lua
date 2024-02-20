@@ -40,21 +40,21 @@ map("n", "<C-e>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { norema
 -- map("n", "<Space>gf", ":lua require('neogen').generate({ type = 'func' })<CR>", { noremap = true, silent = true })
 -- map("n", "<Space>gc", ":lua require('neogen').generate({ type = 'class' })<CR>", { noremap = true, silent = true })
 
--- --Goto-preview
--- map(
---   "n",
---   "<Space>d",
---   "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
---   { noremap = true, silent = true }
--- )
--- map(
---   "n",
---   "<Space>r",
---   "<cmd>lua require('goto-preview').goto_preview_references()<CR>",
---   { noremap = true, silent = true }
--- )
--- map("n", "<Space>q", "<cmd>lua require('goto-preview').close_all_win()<CR>", { noremap = true, silent = true })
---
+--Goto-preview
+map(
+  "n",
+  "<Space>d",
+  "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
+  { noremap = true, silent = true }
+)
+map(
+  "n",
+  "<Space>r",
+  "<cmd>lua require('goto-preview').goto_preview_references()<CR>",
+  { noremap = true, silent = true }
+)
+map("n", "<Space>q", "<cmd>lua require('goto-preview').close_all_win()<CR>", { noremap = true, silent = true })
+
 --Cheatsheet
 -- map("n", "<F12>", ":Cheatsheet<CR>", { noremap = truen, silent = true })
 
@@ -184,7 +184,7 @@ end, {
 --map("n", '<F5>', ":w<CR>:echo 'Saved'<CR>:OverseerRun<CR>", { noremap = true, silent = true })
 
 -- Close quickfix list
-map("n", "<Space>q", ":cclose<CR>:echo 'Quickfix closed'<CR>", { noremap = true })
+-- map("n", "<Space>q", ":cclose<CR>:echo 'Quickfix closed'<CR>", { noremap = true })
 
 -- insert semicolon in the end
 map("i", "<A-;>", "<Esc>A;<Esc>i")
