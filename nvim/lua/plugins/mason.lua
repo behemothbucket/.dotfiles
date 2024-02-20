@@ -21,14 +21,14 @@ return {
 
     require('mason-tool-installer').setup({
       ensure_installed = {
-        "stylua",  -- lua formatter
-        "isort",   -- python formatter
-        "black",   -- python formatter
-        "pylint",  -- python linter
+        "stylua",        -- lua formatter
+        "isort",         -- python formatter
+        "black",         -- python formatter
+        "pylint",        -- python linter
 
-        "gofumpt", -- go better gofmt
-        "gotests", -- go tests codegen
-        "golangci-lint",
+        "gofumpt",       -- go better gofmt
+        "gotests",       -- go tests codegen
+        "golangci-lint", -- go lint
       }
     })
   end

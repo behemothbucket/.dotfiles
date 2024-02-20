@@ -21,7 +21,7 @@ opt.smartcase = true
 opt.ff = "unix"
 opt.laststatus = 3    -- statusline per neovim instance
 opt.showtabline = 0   -- Tabs on/off
-opt.pumblend = 50     -- Popup blend/transparency
+opt.pumblend = 30     -- Popup blend/transparency
 opt.pumheight = 10    -- Maximum number of entries in a popup
 opt.scrolloff = 4     -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
@@ -92,3 +92,43 @@ vim.g.markdown_recommended_style = 0
 
 --Floaterm
 -- cmd "let g:floaterm_height = 0.9 | let g:floaterm_title = 'Terminal'"
+
+--Enable borders in floating windows (diagnostics)
+local _border = "rounded"
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = _border,
+})
+
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = _border,
+})
+
+--Gutter icons
+local signs = {
+  Error = "",
+  Warn = "",
+  Hint = "",
+  Info = "",
+  Question = "",
+}
+
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+require('lspconfig.ui.windows').default_options.border = 'rounded'
+
+--Disable inline error text
+vim.diagnostic.config {
+  virtual_text = false,
+  underline = false,
+  signs = {
+    active = signs,
+  },
+  float = { border = _border },
+  update_in_insert = false,
+  severity_sort = true
+}

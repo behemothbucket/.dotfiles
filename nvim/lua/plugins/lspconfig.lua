@@ -58,6 +58,8 @@ return {
         }
       })
 
+      lspconfig.pyright.setup(coq.lsp_ensure_capabilities {})
+
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
@@ -85,45 +87,6 @@ return {
           end, opts)
         end,
       })
-
-      --Enable borders in floating windows (diagnostics)
-      local _border = "rounded"
-
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = _border,
-      })
-
-      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = _border,
-      })
-
-      --Gutter icons
-      local signs = {
-        Error = "",
-        Warn = "",
-        Hint = "",
-        Info = "",
-        Question = "",
-      }
-
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
-
-      --Disable inline error text
-      vim.diagnostic.config {
-        virtual_text = false,
-        underline = false,
-        signs = {
-          active = signs,
-        },
-        float = { border = _border },
-        update_in_insert = false,
-        severity_sort = true
-      }
-
-      require('lspconfig.ui.windows').default_options.border = 'rounded'
     end,
   },
 }

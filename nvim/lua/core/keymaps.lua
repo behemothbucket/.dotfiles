@@ -4,8 +4,11 @@ local buffalo = require("buffalo.ui")
 -- local dapui = require("dapui")
 
 -- Buffalo
-map({ "t", "n" }, "<Tab><Tab>", buffalo.toggle_buf_menu, { noremap = true })
+map({ "t", "n" }, "<C-b>", buffalo.toggle_buf_menu, { noremap = true })
 map({ 't', 'n' }, '<C-t>', buffalo.toggle_tab_menu, { noremap = true })
+
+-- NvimTree
+-- map("n", "<Space>e", ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true })
 
 -- Trouble
 -- map("n", "<Space>d", function() require("trouble").open() end)
@@ -20,7 +23,7 @@ map("n", "<Space>p", ":Lazy sync<CR>", { noremap = true, silent = true, nowait =
 -- map("n", "<C-Bslash>", ":ToggleTerm<CR>", { noremap = true, silent = true })
 
 --Oil
-map("n", "<Bslash>f", ":Oil --float .<CR>", { noremap = true, silent = true })
+map("n", "<Bslash>f", ":Oil<CR>", { noremap = true, silent = true })
 
 --Mini.files
 -- map("n", "<Tab><Tab>", ":lua MiniFiles.open()<CR>", { noremap = true, silent = true })
