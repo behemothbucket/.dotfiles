@@ -49,7 +49,7 @@ return {
         ["<BS>"] = "actions.parent",
         ["_"] = "actions.open_cwd",
         ["`"] = "actions.cd",
-        ["~"] = "actions.tcd",
+        ["~"] = "actions.tcd", -- Like :cd, but only set the directory for the current tab.
         ["g."] = "actions.toggle_hidden",
       },
       -- Set to false to disable all of the above keymaps

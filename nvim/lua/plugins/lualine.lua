@@ -149,6 +149,12 @@ return {
 
     ins_right { 'diff', source = diff_source }
 
+    -- ins_right {
+    --   'swenv',
+    --   icon = "",
+    --   color = { fg = "#8fb55e" },
+    -- }
+
     -- Git Branch
     ins_right {
       'branch',

@@ -16,8 +16,12 @@ map({ 't', 'n' }, '<C-t>', buffalo.toggle_tab_menu, { noremap = true })
 --PackerSync
 -- map("n", "<Space>p", ":PackerSync<CR>", { noremap = true, silent = true, nowait = true })
 
+--Projects
+map("n", "<Space>p", ":lua require'telescope'.extensions.projects.projects{}<CR>",
+  { noremap = true, silent = true, nowait = true })
+
 --Lazy
-map("n", "<Space>p", ":Lazy sync<CR>", { noremap = true, silent = true, nowait = true })
+-- map("n", "<Space>p", ":Lazy sync<CR>", { noremap = true, silent = true, nowait = true })
 
 --ToggleTerm
 -- map("n", "<C-Bslash>", ":ToggleTerm<CR>", { noremap = true, silent = true })
