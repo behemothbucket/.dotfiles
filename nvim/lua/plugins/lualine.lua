@@ -9,17 +9,17 @@ return {
 
     -- Color table for highlights
     local colors = {
-      bg       = '#0c1014',
+      bg       = '#222827',
       fg       = '#bbc2cf',
-      yellow   = '#ECBE7B',
-      cyan     = '#008080',
-      darkblue = '#081633',
-      green    = '#B7BD82',
-      orange   = '#8d6141',
-      violet   = '#B294BB',
-      magenta  = '#AE84BB',
-      blue     = '#81A2BE',
-      red      = '#CC8282',
+      yellow   = '#625566',
+      cyan     = '#a9d1df',
+      darkblue = '#5786bc',
+      green    = '#63b0b0',
+      orange   = '#625566',
+      violet   = '#654a96',
+      magenta  = '#cd749c',
+      blue     = '#5786bc',
+      red      = '#ee5396',
     }
 
     local conditions = {
@@ -117,14 +117,14 @@ return {
         }
         return { fg = mode_color[vim.fn.mode()] }
       end,
-      padding = { right = 0 },
+      padding = { right = 1 },
     }
 
     -- File Name
     ins_left {
       'filename',
       file_status = true, -- Displays file status (readonly status, modified status)
-      path = 2,           -- 0: Just the filename
+      path = 1,           -- 0: Just the filename
       -- 1: Relative path
       -- 2: Absolute path
       shorting_target = 0, -- Shortens path to leave 40 spaces in the window
@@ -133,6 +133,19 @@ return {
         readonly = '  ', -- Text to show when the file is non-modifiable or readonly.
         unnamed = '[No Name]', -- Text to show for unnamed buffers.
       }
+    }
+
+    ins_left {
+      "searchcount",
+      icon = "󰍉",
+      color = { fg = colors.blue }
+    }
+
+    ins_left {
+      "diagnostics",
+      on_click = function()
+        require("telescope.builtin").diagnostics()
+      end,
     }
 
     -- Git Diff
@@ -147,18 +160,19 @@ return {
       end
     end
 
-    ins_right { 'diff', source = diff_source }
-
-    -- ins_right {
-    --   'swenv',
-    --   icon = "",
-    --   color = { fg = "#8fb55e" },
-    -- }
+    ins_right {
+      'diff', source = diff_source, on_click = function()
+      vim.cmd("DiffviewOpen")
+    end,
+    }
 
     -- Git Branch
     ins_right {
       'branch',
       icon = '',
+      on_click = function()
+        require("telescope.builtin").git_branches()
+      end,
       -- icon = '',
       -- color = { fg = colors.green },
     }
@@ -168,6 +182,49 @@ return {
       'filetype',
       icon_only = true,
       padding = { right = 2, left = 1 }
+    }
+
+    -- Custom components using swenv
+    local env_stat =
+        function()
+          local swenv = require("swenv.api")
+          local current_env = "[-]" -- No environment
+
+          if swenv.get_current_venv() ~= nil then
+            -- Environment loaded by swenv
+            local _name = swenv.get_current_venv().name
+            local _src = swenv.get_current_venv().source
+            current_env = _name .. " (" .. _src .. ")"
+          elseif vim.g.python3_host_prog ~= nil then
+            -- Default environment from python3_host_prog
+            local Path = require("plenary.path")
+            local tokens = Path._split(Path:new(vim.g.python3_host_prog))
+
+            -- Get the environment name from python3_host_prog
+            if #tokens > 2 then
+              -- Standard path is .../[name]/bin/python, so get the third last token
+              current_env = tokens[#tokens - 2]
+
+              -- Check if python3_host_prog is registered in swenv and get its source
+              for _, v in ipairs(swenv.get_venvs()) do
+                if v.name == current_env then
+                  current_env = current_env .. " (" .. v.source .. ")"
+                  break
+                end
+              end
+            end
+          end
+
+          return current_env
+        end
+
+    ins_right {
+      env_stat,
+      icon = "",
+      padding = { right = 2, left = 1 },
+      on_click = function()
+        require("swenv.api").pick_venv()
+      end,
     }
 
     -- File Encoding
@@ -186,20 +243,31 @@ return {
       symbols = { unix = 'unix ' },
       -- color = { fg = colors.green, gui = 'bold' },
       -- icons_enabled = false,
+      on_click = function()
+        vim.ui.select(
+          { "unix", "mac", "dos" },
+          { prompt = "Select fileformat" },
+          function(ff)
+            if ff ~= nil then
+              vim.opt_local.fileformat = ff
+            end
+          end
+        )
+      end,
     }
 
-    -- File Size
-    ins_right {
-      'filesize',
-      padding = { right = 2 },
-      cond = conditions.buffer_not_empty,
-    }
+    -- -- File Size
+    -- ins_right {
+    --   'filesize',
+    --   padding = { right = 2 },
+    --   cond = conditions.buffer_not_empty,
+    -- }
 
     -- Text Progress
-    ins_right {
-      'progress',
-      padding = { right = 1 },
-    }
+    -- ins_right {
+    --   'progress',
+    --   padding = { right = 1 },
+    -- }
 
     -- File Location
     ins_right {
@@ -209,11 +277,11 @@ return {
 
     -- Insert mid section. You can make any number of sections in neovim :)
     -- For lualine it's any number greater then 2
-    ins_left {
-      function()
-        return '%='
-      end,
-    }
+    -- ins_left {
+    --   function()
+    --     return '%='
+    --   end,
+    -- }
 
     -- End Of The Status Bar
     ins_right {

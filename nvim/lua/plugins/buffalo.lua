@@ -21,7 +21,7 @@ return {
         },
       },
       general_commands = {
-        cycle = true, -- cycle through the list
+        cycle = true,    -- cycle through the list
         exit_menu = "x", -- similar to 'q' and '<esc>'
       },
       ui = {

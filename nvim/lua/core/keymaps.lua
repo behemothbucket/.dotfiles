@@ -16,6 +16,37 @@ map({ 't', 'n' }, '<C-t>', buffalo.toggle_tab_menu, { noremap = true })
 --PackerSync
 -- map("n", "<Space>p", ":PackerSync<CR>", { noremap = true, silent = true, nowait = true })
 
+--Zen-mode
+-- map("n", "<Space>z", ":ZenMode<CR>", { noremap = true, silent = true })
+map("n", "<Space>zz", function()
+  require("zen-mode").setup {
+    window = {
+      width = 90,
+      options = {}
+    },
+  }
+  require("zen-mode").toggle()
+  vim.wo.wrap = false
+  vim.wo.number = true
+  vim.wo.rnu = false
+  ColorMyPencils()
+end)
+
+map("n", "<Space>zZ", function()
+  require("zen-mode").setup {
+    window = {
+      width = 80,
+      options = {}
+    },
+  }
+  require("zen-mode").toggle()
+  vim.wo.wrap = false
+  vim.wo.number = false
+  vim.wo.rnu = false
+  vim.opt.colorcolumn = "0"
+  ColorMyPencils()
+end)
+
 --Projects
 map("n", "<Space>p", ":lua require'telescope'.extensions.projects.projects{}<CR>",
   { noremap = true, silent = true, nowait = true })
@@ -140,8 +171,9 @@ map("n", "<F3>", ":e ~/.config/nvim/lua/<CR>", { noremap = true, silent = true }
 -- nvim-toggler emacs true
 -- map("n", '<c-i>', require('nvim-toggler').toggle, { silent = true, nowait = true })
 
--- Telescope live_grep
+-- Telescope
 map("n", "lg", ":Telescope live_grep<CR>", { noremap = true, silent = true })
+map("n", "lf", ":Telescope find_files<CR>", { noremap = true, silent = true })
 
 --Source current file
 map("n", "<Space>ss", "<cmd>w | so%<CR><cmd>echo 'Sourced'<cr>", { noremap = true, nowait = true })

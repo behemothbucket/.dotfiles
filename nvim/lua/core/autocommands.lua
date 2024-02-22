@@ -21,56 +21,6 @@ api.nvim_create_autocmd("BufRead", {
   end,
 })
 
--- Delete [No Name] buffers.
-api.nvim_create_autocmd("BufHidden", {
-  desc = "Delete [No Name] buffers",
-  callback = function(event)
-    if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
-      vim.schedule(function() pcall(vim.api.nvim_buf_delete, event.buf, {}) end)
-    end
-  end,
-})
-
--- Add this autocmd to exit yabs when mouse click the main buffer.
--- api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*" },
---   callback = function()
---     if vim.bo.buflisted then
---       require 'yabs'.leave()
---     end
---   end,
--- })
-
--- Function to check if a floating dialog exists and if not
--- then check for diagnostics under the cursor
-function OpenDiagnosticIfNoFloat()
-  for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-    if vim.api.nvim_win_get_config(winid).zindex then
-      return
-    end
-  end
-  -- THIS IS FOR BUILTIN LSP
-  vim.diagnostic.open_float(0, {
-    scope = "cursor",
-    focusable = false,
-    close_events = {
-      "CursorMoved",
-      "CursorMovedI",
-      "BufHidden",
-      "InsertCharPre",
-      "WinLeave",
-    },
-  })
-end
-
--- Show diagnostics under the cursor when holding position
-vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
-vim.api.nvim_create_autocmd({ "CursorHold" }, {
-  pattern = "*",
-  group = "lsp_diagnostics_hold",
-  command = "lua OpenDiagnosticIfNoFloat()",
-})
-
 --Remove all trailing whitespaces on save for all filetypes
 --We can use .editorconfig to format
 api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -82,33 +32,16 @@ api.nvim_create_autocmd({ "BufWritePre" }, {
   end,
 })
 
-
+-- Format/action on save
 vim.api.nvim_create_autocmd("BufWritePre", {
-  buffer = buffer,
   callback = function()
-    vim.lsp.buf.format { async = false }
-  end
-})
-
--- Run gofmt + goimport on save
-local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-    require('go.format').goimport()
+    if vim.bo.filetype == 'go' then
+      require('go.format').goimport()
+    else
+      vim.lsp.buf.format { async = false }
+    end
   end,
-  group = format_sync_grp,
 })
-
--- JAVA
--- local _jdtls, jdtls = pcall(require, "lsp.jdtls")
--- if _jdtls and type(jdtls) ~= "boolean" then
--- 	vim.api.nvim_create_autocmd({ "FileType" }, {
--- 		pattern = "java",
--- 		callback = jdtls.start,
--- 		desc = "Starting Java language server",
--- 	})
--- end
 
 --Highlight on yank
 api.nvim_create_augroup("YankHighlightGrp", {})
@@ -131,40 +64,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
---One statusline for split Terminal and buffer
--- cmd "autocmd TermOpen * setlocal nonumber norelativenumber | set laststatus=3"
-
---WARNING Why signcolumn dont work properly?
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = "*",
---   callback = function()
---     vim.opt.signcolumn = "number"
---   end
--- })
-
--- Git branch
-local function branch_name()
-  local branch = ""
-  if vim.fn.has('win64') or vim.fn.has('win32') then
-    branch = vim.fn.system("git branch --show-current 2>&1 | grep -v 'fatal'"):match("[^\n]*")
-  elseif vim.fn.has('unix') then
-    branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
-  end
-  if branch ~= "" then
-    return " " .. branch
-  else
-    return ""
-  end
-end
-
-vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
-  callback = function()
-    vim.b.branch_name = branch_name()
-  end
-})
-
 -- close some filetypes with <q>
-
 local function augroup(name)
   return vim.api.nvim_create_augroup("nvim_" .. name, { clear = true })
 end
@@ -191,6 +91,104 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
+
+-- Delete [No Name] buffers.
+-- api.nvim_create_autocmd("BufHidden", {
+--   desc = "Delete [No Name] buffers",
+--   callback = function(event)
+--     if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
+--       vim.schedule(function() pcall(vim.api.nvim_buf_delete, event.buf, {}) end)
+--     end
+--   end,
+-- })
+
+-- Add this autocmd to exit yabs when mouse click the main buffer.
+-- api.nvim_create_autocmd("BufEnter", {
+--   pattern = { "*" },
+--   callback = function()
+--     if vim.bo.buflisted then
+--       require 'yabs'.leave()
+--     end
+--   end,
+-- })
+
+-- Function to check if a floating dialog exists and if not
+-- then check for diagnostics under the cursor
+-- function OpenDiagnosticIfNoFloat()
+--   for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+--     if vim.api.nvim_win_get_config(winid).zindex then
+--       return
+--     end
+--   end
+--   -- THIS IS FOR BUILTIN LSP
+--   vim.diagnostic.open_float(0, {
+--     scope = "cursor",
+--     focusable = false,
+--     close_events = {
+--       "CursorMoved",
+--       "CursorMovedI",
+--       "BufHidden",
+--       "InsertCharPre",
+--       "WinLeave",
+--     },
+--   })
+-- end
+
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   callback = function()
+--     vim.lsp.buf.format { async = false }
+--   end
+-- })
+
+-- JAVA
+-- local _jdtls, jdtls = pcall(require, "lsp.jdtls")
+-- if _jdtls and type(jdtls) ~= "boolean" then
+-- 	vim.api.nvim_create_autocmd({ "FileType" }, {
+-- 		pattern = "java",
+-- 		callback = jdtls.start,
+-- 		desc = "Starting Java language server",
+-- 	})
+-- end
+
+--One statusline for split Terminal and buffer
+-- cmd "autocmd TermOpen * setlocal nonumber norelativenumber | set laststatus=3"
+
+--WARNING Why signcolumn dont work properly?
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   pattern = "*",
+--   callback = function()
+--     vim.opt.signcolumn = "number"
+--   end
+-- })
+
+-- Git branch
+-- local function branch_name()
+--   local branch = ""
+--   if vim.fn.has('win64') or vim.fn.has('win32') then
+--     branch = vim.fn.system("git branch --show-current 2>&1 | grep -v 'fatal'"):match("[^\n]*")
+--   elseif vim.fn.has('unix') then
+--     branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
+--   end
+--   if branch ~= "" then
+--     return " " .. branch
+--   else
+--     return ""
+--   end
+-- end
+--
+-- vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
+--   callback = function()
+--     vim.b.branch_name = branch_name()
+--   end
+-- })
+
+-- Show diagnostics under the cursor when holding position
+-- vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
+-- vim.api.nvim_create_autocmd({ "CursorHold" }, {
+--   pattern = "*",
+--   group = "lsp_diagnostics_hold",
+--   command = "lua OpenDiagnosticIfNoFloat()",
+-- })
 
 --Toggle-checkbox Markdown
 local checked_character = "x"

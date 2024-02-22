@@ -1,12 +1,11 @@
 local opt = vim.opt
-local cmd = vim.cmd
 local g = vim.g
-
--- Coq
-g.coq_settings = { auto_start = "shut-up" }
 
 g.loaded_netrwPlugin = 1 -- Don't load netrw
 g.loaded_netrw = 1       -- gx won't work
+-- g.netrw_browse_split = 0
+-- g.netrw_banner = 0
+-- g.netrw_winsize = 25
 
 g.gist_is_private = true
 
@@ -21,7 +20,7 @@ opt.smartcase = true
 opt.ff = "unix"
 opt.laststatus = 3    -- statusline per neovim instance
 opt.showtabline = 0   -- Tabs on/off
-opt.pumblend = 30     -- Popup blend/transparency
+opt.pumblend = 0      -- Popup blend/transparency
 opt.pumheight = 10    -- Maximum number of entries in a popup
 opt.scrolloff = 4     -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
@@ -79,7 +78,32 @@ opt.background = "dark"
 opt.selection = "old"              -- No need extra block character to copy (Viusal mode)
 opt.list = false
 
-g.python3_host_prog = "/usr/bin/python3"
+---------------------------------------------------------------------------------------------------
+-- Setup python path
+---------------------------------------------------------------------------------------------------
+local possible_python_paths = {
+  -- Extend the list for possible python path. Will use the 1st possible one
+  os.getenv("HOME") .. "~/qa/autotests_jm_landing/.venv/bin/python3",   -- Python3's venv (dev)
+  -- os.getenv("HOME") .. "/opt/anaconda3/envs/dev/bin/python", -- MacOS's conda (dev)
+  -- os.getenv("HOME") .. "/anaconda3/envs/dev/bin/python",     -- Linux's conda (dev)
+  os.getenv("HOME") .. "/.conda/envs/dev/bin/python",   -- Linux's alternative conda (dev)
+  -- os.getenv("HOME") .. "/.pyenv/shims/python",               -- pyenv's default path
+  "/usr/bin/python3",                                   -- System default python3
+  "/usr/bin/python",                                    -- System default python
+}
+for _, python_path in pairs(possible_python_paths) do
+  if io.open(python_path, "r") ~= nil then
+    g.python3_host_prog = python_path
+    break
+  end
+end
+
+---------------------------------------------------------------------------------------------------
+-- Deactivate unused providers
+---------------------------------------------------------------------------------------------------
+g.loaded_ruby_provider = 0
+g.loaded_perl_provider = 0
+
 opt.undodir = vim.fn.expand "~/.config/nvim/undo"
 
 -- if vim.fn.has "nvim-0.9.0" == 1 then
@@ -92,43 +116,3 @@ vim.g.markdown_recommended_style = 0
 
 --Floaterm
 -- cmd "let g:floaterm_height = 0.9 | let g:floaterm_title = 'Terminal'"
-
---Enable borders in floating windows (diagnostics)
-local _border = "rounded"
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = _border,
-})
-
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = _border,
-})
-
---Gutter icons
-local signs = {
-  Error = "",
-  Warn = "",
-  Hint = "",
-  Info = "",
-  Question = "",
-}
-
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
-require('lspconfig.ui.windows').default_options.border = 'rounded'
-
---Disable inline error text
-vim.diagnostic.config {
-  virtual_text = false,
-  underline = false,
-  signs = {
-    active = signs,
-  },
-  float = { border = _border },
-  update_in_insert = false,
-  severity_sort = true
-}

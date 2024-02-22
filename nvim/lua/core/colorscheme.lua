@@ -1,8 +1,3 @@
--- require("boo-colorscheme").use({
--- italic = false, -- toggle italics
--- theme = "boo"
--- })
-
 -- Default options:
 -- require('kanagawa').setup({
 --   compile = false,  -- enable compiling the colorscheme
@@ -52,20 +47,30 @@
 -- vim.cmd("colorscheme tokyonight-night")
 
 -- Nord colorscheme options
-vim.g.nord_contrast = true
-vim.g.nord_disable_background = true
-vim.g.nord_cursorline_transparent = false
-vim.g.nord_borders = true
-vim.g.nord_uniform_diff_background = false
-vim.g.nord_italic = false
+-- vim.g.nord_contrast = true
+-- vim.g.nord_disable_background = true
+-- vim.g.nord_cursorline_transparent = false
+-- vim.g.nord_borders = true
+-- vim.g.nord_uniform_diff_background = false
+-- vim.g.nord_italic = false
 
 -- Load nord colorscheme with A protected call
-local colorscheme = "nord"
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
-  return
+-- require('rose-pine').setup({
+-- disable_background = true
+-- })
+
+-- require("boo-colorscheme").use({
+-- italic = false, -- toggle italics
+-- theme = "boo"
+-- })
+
+function ColorMyPencils(color)
+  color = color or "boo"
+  vim.cmd.colorscheme(color)
+
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 end
 
--- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+ColorMyPencils()
