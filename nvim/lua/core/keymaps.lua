@@ -4,7 +4,7 @@ local buffalo = require("buffalo.ui")
 -- local dapui = require("dapui")
 
 -- Buffalo
-map({ "t", "n" }, "<C-b>", buffalo.toggle_buf_menu, { noremap = true })
+map({ "t", "n" }, "<C-e>", buffalo.toggle_buf_menu, { noremap = true })
 map({ 't', 'n' }, '<C-t>', buffalo.toggle_tab_menu, { noremap = true })
 
 -- NvimTree
@@ -29,7 +29,7 @@ map("n", "<Space>zz", function()
   vim.wo.wrap = false
   vim.wo.number = true
   vim.wo.rnu = false
-  ColorMyPencils()
+  ApplyTheme()
 end)
 
 map("n", "<Space>zZ", function()
@@ -44,7 +44,7 @@ map("n", "<Space>zZ", function()
   vim.wo.number = false
   vim.wo.rnu = false
   vim.opt.colorcolumn = "0"
-  ColorMyPencils()
+  ApplyTheme()
 end)
 
 --Projects
@@ -69,7 +69,7 @@ map("n", "<Bslash>f", ":Oil<CR>", { noremap = true, silent = true })
 --Harpoon
 map("n", "<Space>a", "<cmd>lua require('harpoon.mark').add_file()<CR><cmd>echo 'Harpoon: Mark added'<CR>",
   { noremap = true, silent = true })
-map("n", "<C-e>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true, silent = true })
+map("n", "<Space>e", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true, silent = true })
 
 --Window
 -- map("n", "<Space>w", ":lua require('nvim-window').pick()<CR>", { silent = true })

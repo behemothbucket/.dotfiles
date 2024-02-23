@@ -64,7 +64,7 @@
 -- theme = "boo"
 -- })
 
-function ColorMyPencils(color)
+function ApplyTheme(color)
   color = color or "boo"
   vim.cmd.colorscheme(color)
 
@@ -73,4 +73,4 @@ function ColorMyPencils(color)
   vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 end
 
-ColorMyPencils()
+ApplyTheme()

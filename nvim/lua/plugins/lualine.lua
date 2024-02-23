@@ -16,7 +16,7 @@ return {
       darkblue = '#5786bc',
       green    = '#63b0b0',
       orange   = '#625566',
-      violet   = '#654a96',
+      violet   = '#9c75dd',
       magenta  = '#cd749c',
       blue     = '#5786bc',
       red      = '#ee5396',
@@ -89,16 +89,16 @@ return {
     -- Icon for diffrent mode:  -- normal -- | -- insert -- | -- visual -- | -- command --
     ins_left {
       function()
-        return ''
+        return '' -- 󰊠󰥓󰞇󰓥󰳉
       end,
       color = function()
         -- Auto change color according to neovim's mode
         local mode_color = {
           n = colors.green,
-          i = colors.blue,
-          v = colors.magenta,
-          [''] = colors.magenta,
-          V = colors.magenta,
+          i = colors.violet,
+          v = colors.blue,
+          [''] = colors.blue,
+          V = colors.blue,
           c = colors.red,
           no = colors.red,
           s = colors.orange,
@@ -140,6 +140,7 @@ return {
       icon = "󰍉",
       color = { fg = colors.blue }
     }
+
 
     ins_left {
       "diagnostics",
@@ -220,7 +221,7 @@ return {
 
     ins_right {
       env_stat,
-      icon = "",
+      icon = "󱔎",
       padding = { right = 2, left = 1 },
       on_click = function()
         require("swenv.api").pick_venv()
