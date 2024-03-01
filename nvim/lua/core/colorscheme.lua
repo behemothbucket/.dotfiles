@@ -59,32 +59,69 @@
 -- disable_background = true
 -- })
 
--- require("boo-colorscheme").use({
---   italic = false, -- toggle italics
---   theme = "boo"
+-- require("modus-themes").setup({
+--   transparent = false,
+--   dim_inactive = false,
+--   styles = {
+--     comments = { italic = true },
+--     keywords = { italic = false },
+--   },
 -- })
 
-require("modus-themes").setup({
-  transparent = false,
-  dim_inactive = false,
-  styles = {
-    comments = { italic = true },
-    keywords = { italic = false },
+-- function ApplyTheme(color)
+-- color = color or "modus_operandi"
+-- vim.cmd.colorscheme(color)
+
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+-- end
+
+-- ApplyTheme()
+
+-- vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = "#B4BEFE" })
+-- vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { bg = "#B4BEFE" })
+-- vim.api.nvim_set_hl(0, 'IlluminatedWordText', { bg = "#B4BEFE", underline = false })
+
+
+-- Default options:
+require('kanagawa').setup({
+  compile = false,   -- enable compiling the colorscheme
+  undercurl = false, -- enable undercurls
+  commentStyle = { italic = true },
+  keywordStyle = { italic = false },
+  statementStyle = { bold = true },
+
+  transparent = false,   -- do not set background color
+  dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
+  terminalColors = true, -- define vim.g.terminal_color_{0,17}
+
+  theme = "dragon",      -- Load "wave" theme when 'background' option is not set
+  background = {         -- map the value of 'background' option to a theme
+    dark = "dragon",     -- try "dragon" !
+    light = "lotus"
   },
+
+  overrides = function(colors)
+    local theme = colors.theme
+    return {
+      NormalFloat = { bg = "none" },
+      FloatBorder = { bg = "none" },
+      FloatTitle = { bg = "none" },
+
+      -- Save an hlgroup with dark background and dimmed foreground
+      -- so that you can use it where your still want darker windows.
+      -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+      NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+
+      -- Popular plugins that open floats will link to NormalFloat by default;
+      -- set their background accordingly if you wish to keep them dark and borderless
+      LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+
+      MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+    }
+  end,
 })
 
-function ApplyTheme(color)
-  color = color or "modus_operandi"
-  vim.cmd.colorscheme(color)
-
-  -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-  -- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-end
-
-ApplyTheme()
-
--- change the highlight style
-vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
-vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
-vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+-- setup must be called before loading
+vim.cmd("colorscheme kanagawa")

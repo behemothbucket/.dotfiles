@@ -41,12 +41,12 @@ return {
               nilness = true,
               useany = true,
             },
-            codelenses = {
-              generate = true,
-              run_govulncheck = true,
-              tidy = true,
-              upgrade_dependency = true,
-            },
+            -- codelenses = {
+            --   generate = true,
+            --   run_govulncheck = true,
+            --   tidy = true,
+            --   upgrade_dependency = true,
+            -- },
             hints = {
               constantValues = true
             },
@@ -117,6 +117,7 @@ return {
       --Disable inline error text
       vim.diagnostic.config {
         underline = false,
+        virtual_text = false,
         signs = {
           active = signs,
         },

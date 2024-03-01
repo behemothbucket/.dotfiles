@@ -167,12 +167,12 @@ return {
         require("telescope.builtin").diagnostics()
       end,
     }
-
-    ins_left {
-      "searchcount",
-      icon = "󰍉",
-      color = { fg = "#0031a9" }
-    }
+    --
+    -- ins_left {
+    --   "searchcount",
+    --   icon = "󰍉",
+    -- color = { fg = "#0031a9" }
+    -- }
 
     -- Git Diff
     local function diff_source()

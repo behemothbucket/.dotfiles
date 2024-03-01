@@ -18,7 +18,7 @@ opt.cursorline = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.ff = "unix"
-opt.laststatus = 3    -- statusline per neovim instance
+-- opt.laststatus = 3    -- statusline per neovim instance
 opt.showtabline = 0   -- Tabs on/off
 opt.pumblend = 0      -- Popup blend/transparency
 opt.pumheight = 10    -- Maximum number of entries in a popup
@@ -67,7 +67,6 @@ opt.hidden = true
 opt.signcolumn = "number"
 opt.undolevels = 10000
 opt.updatetime = 1000
-opt.list = true
 opt.swapfile = false
 opt.backup = false
 opt.writebackup = false
@@ -76,7 +75,6 @@ opt.winminwidth = 5                -- Minimum window width
 opt.wrap = false                   -- Disable line wrap
 opt.background = "dark"
 opt.selection = "old"              -- No need extra block character to copy (Viusal mode)
-opt.list = false
 
 ---------------------------------------------------------------------------------------------------
 -- Setup python path

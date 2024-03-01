@@ -1,5 +1,5 @@
 local map = vim.keymap.set
-local buffalo = require("buffalo.ui")
+-- local buffalo = require("buffalo.ui")
 -- local dap = require("dap")
 -- local dapui = require("dapui")
 
@@ -7,8 +7,8 @@ local buffalo = require("buffalo.ui")
 map("n", "<Space>e", require("arrow.persist").toggle)
 
 -- Buffalo
-map({ "t", "n" }, "<C-e>", buffalo.toggle_buf_menu, { noremap = true })
-map({ 't', 'n' }, '<C-t>', buffalo.toggle_tab_menu, { noremap = true })
+-- map({ "t", "n" }, "<C-e>", buffalo.toggle_buf_menu, { noremap = true })
+-- map({ 't', 'n' }, '<C-t>', buffalo.toggle_tab_menu, { noremap = true })
 
 -- NvimTree
 -- map("n", "<Space>e", ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true })
@@ -85,16 +85,16 @@ map("n", "<Bslash>f", ":Oil<CR>", { noremap = true, silent = true })
 map(
   "n",
   "<Space>d",
-  "<cmd>lua require('goto-preview').goto_preview_definition()<CR>",
+  "<cmd>lua require('goto-preview').goto_preview_definition()<CR><cmd>",
   { noremap = true, silent = true }
 )
 map(
   "n",
   "<Space>r",
-  "<cmd>lua require('goto-preview').goto_preview_references()<CR>",
+  "<cmd>lua require('goto-preview').goto_preview_references()<CR><cmd>",
   { noremap = true, silent = true }
 )
-map("n", "<Space>q", "<cmd>lua require('goto-preview').close_all_win()<CR>", { noremap = true, silent = true })
+map("n", "<Space>q", "<cmd>lua require('goto-preview').close_all_win()<CR><cmd>", { noremap = true, silent = true })
 
 --Cheatsheet
 -- map("n", "<F12>", ":Cheatsheet<CR>", { noremap = truen, silent = true })
@@ -270,3 +270,24 @@ map("i", "<A-;>", "<Esc>A;<Esc>i")
 -- ino <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
 -- ino <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 -- ino <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"
+
+-- Neo-tree
+map("n", "<Tab><Tab>", "<cmd>Neotree focus<CR>", { noremap = true })
+map({ "t", "n" }, "<C-e>", "<cmd>Neotree buffers<CR>", { noremap = true })
+map({ "t", "n" }, "<C-g>", "<cmd>Neotree source=git_status dir=%:p:h left<CR>", { noremap = true })
+-- map("n", "<Space>nf", "<cmd>Neotree source=filesystem reveal reveal_force_cwd<CR><cmd>")
+-- mapn", "<Space>nc", ":Neotree close<CR>")
+
+-- Coq
+-- Set recommended to false
+
+vim.g.coq_settings = { ["keymap.recommended"] = false }
+
+-- Keybindings
+map('i', '<Esc>', 'pumvisible() ? "<C-e><Esc>" : "<Esc>"', { expr = true, silent = true })
+map('i', '<C-c>', 'pumvisible() ? "<C-e><C-c>" : "<C-c>"', { expr = true, silent = true })
+map('i', '<BS>', 'pumvisible() ? "<C-e><BS>" : "<BS>"', { expr = true, silent = true })
+map('i', '<CR>', 'pumvisible() ? (complete_info().selected == -1 ? "<C-e><CR>" : "<C-y>") : "<CR>"',
+  { expr = true, silent = true })
+map('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true, silent = true })
+map('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<BS>"', { expr = true, silent = true })

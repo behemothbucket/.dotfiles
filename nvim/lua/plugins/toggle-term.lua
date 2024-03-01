@@ -12,7 +12,7 @@ return {
     start_in_insert = true,
     highlights = {
       FloatBorder = { link = 'FloatBorder' },
-      NormalFloat= { link = 'NormalFloat' },
+      NormalFloat = { link = 'NormalFloat' },
     },
     size = function(term)
       if term.direction == 'horizontal' then
