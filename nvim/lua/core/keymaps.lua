@@ -212,6 +212,9 @@ map("n", "<Space><Space>", "<cmd>lcd %:p:h<CR><cmd>pwd<CR>", { noremap = true, s
 -- Copy entire buffer.
 map("n", "<Space>y", "<cmd>%yank<cr><cmd>echo 'Copied all lines'<CR>")
 
+-- Redo
+map("n", 'U', '<C-r>', { noremap = true })
+
 -- Do not move my cursor when joining lines.
 map("n", "J", function()
   vim.cmd [[
@@ -254,3 +257,16 @@ map("i", "<A-;>", "<Esc>A;<Esc>i")
 
 --Dapui
 -- map('n', "<Space>du", dapui.toggle)
+
+-- Coq
+
+-- " Set recommended to false
+-- let g:coq_settings = { "keymap.recommended": v:false }
+--
+-- " Keybindings
+-- ino <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
+-- ino <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
+-- ino <silent><expr> <BS>    pumvisible() ? "\<C-e><BS>"  : "\<BS>"
+-- ino <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
+-- ino <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+-- ino <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<BS>"

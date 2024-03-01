@@ -161,17 +161,17 @@ return {
       }
     }
 
-    -- ins_left {
-    --   "searchcount",
-    --   icon = "󰍉",
-    --   color = { fg = colors.blue }
-    -- }
-
     ins_left {
       "diagnostics",
       on_click = function()
         require("telescope.builtin").diagnostics()
       end,
+    }
+
+    ins_left {
+      "searchcount",
+      icon = "󰍉",
+      color = { fg = "#0031a9" }
     }
 
     -- Git Diff

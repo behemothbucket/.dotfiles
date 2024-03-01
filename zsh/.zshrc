@@ -12,7 +12,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Minimal theme
 # git clone https://github.com/subnixr/minimal.git  ${ZSH_CUSTOM}/themes/minimal
 # ln -s ${ZSH_CUSTOM}/themes/minimal/minimal.zsh ${ZSH_CUSTOM}/themes/minimal.zsh-theme
-# then update `ZSH_THEME` to `minimal` in your .zshrc 
+# then update `ZSH_THEME` to `minimal` in your .zshrc
 
 ZSH_THEME="minimal"
 
@@ -105,33 +105,20 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias n="nvim"
-alias n.="nvim ."
-alias r="ranger"
-alias cd..="cd .."
-alias e="emacs -nw"
-alias disable_webcam="sudo modprobe -r uvcvideo"
-alias enable_webcam="sudo modprobe uvcvideo"
-alias toggle_l2tp_SmartFinance="nmcli c show --active | grep SmartFinance && nmcli c down SmartFinance || nmcli c up SmartFinance"
-export VISUAL="/usr/bin/nvim"
-export EDITOR="$VISUAL"
+
 export FZF_DEFAULT_OPTS="--color=bg+:#282828,fg+:#95a99f,gutter:-1"
-alias luamake=/home/nonh/Загрузки/lua-language-server/3rd/luamake/luamake
-export PATH="${HOME}/.config/lsp/lua-language-server/bin:${PATH}"
-export PATH="$HOME/.config/emacs/bin:$PATH"
+export GOPATH=$HOME/go
+export GOROOT=/usr/lib/go
+export PATH=$PATH:$GOPATH
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:~/.local/bin
-export GOPATH="$HOME/go"
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+alias m='pgrep -vx tmux > /dev/null && \
+        tmux new -d -s delete-me && \
+        tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh && \
+        tmux kill-session -t delete-me && \
+        tmux attach || tmux attach'
+
 export NVM_DIR="$HOME/.nvm"
-export PATH="$HOME/.emacs.d/bin:$PATH"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-JAVA_HOME=$(dirname $( readlink -f $(which java) ))
-JAVA_HOME=$(realpath "$JAVA_HOME"/../)
-export JAVA_HOME
-M2_HOME='/opt/apache-maven-3.6.3'
-PATH="$M2_HOME/bin:$PATH"
-export PATH
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
