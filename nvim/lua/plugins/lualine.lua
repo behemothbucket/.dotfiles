@@ -1,25 +1,50 @@
 return {
   "nvim-lualine/lualine.nvim",
   config = function()
+    -- require("lualine").setup({
+    --   options = {
+    --     icons_enabled = false,
+    --     theme = "auto",
+    --     component_separators = "|",
+    --     section_separators = "",
+    --   },
+    --   sections = {
+    --     lualine_c = { { "filename", file_status = true, path = 1 } },
+    --   },
+    -- })
+
     -- Load lualine with a protected call
     local status_ok, lualine = pcall(require, "lualine")
     if not status_ok then
       return
     end
 
-    -- Color table for highlights
-    local colors = {
-      bg       = '#222827',
-      fg       = '#bbc2cf',
-      yellow   = '#625566',
-      cyan     = '#a9d1df',
-      darkblue = '#5786bc',
-      green    = '#63b0b0',
-      orange   = '#625566',
-      violet   = '#9c75dd',
-      magenta  = '#cd749c',
-      blue     = '#5786bc',
-      red      = '#ee5396',
+    -- local boo_colors = {
+    --   bg       = '#222827',
+    --   fg       = '#bbc2cf',
+    --   yellow   = '#5d6f74',
+    --   cyan     = '#a9d1df',
+    --   darkblue = '#5786bc',
+    --   green    = '#63b0b0',
+    --   orange   = '#5d6f74',
+    --   violet   = '#9c75dd',
+    --   magenta  = '#cd749c',
+    --   blue     = '#5786bc',
+    --   red      = '#ee5396',
+    -- }
+
+    local boo_colors = {
+      bg = "#000000",
+      fg = "#595959",
+      yellow = "#6f5500",
+      cyan = "#005e8b",
+      darkblue = "#0000b0",
+      green = "#006800",
+      orange = "#813e00",
+      violet = "#5317ac",
+      magenta = "#721045",
+      blue = "#2544bb",
+      red = "#a60000"
     }
 
     local conditions = {
@@ -41,15 +66,16 @@ return {
       options = {
         component_separators = '',
         section_separators = '',
-        theme = {
-          normal = { c = { fg = colors.fg, bg = colors.bg } },
-          inactive = { c = { fg = colors.fg, bg = colors.bg } },
-        },
+        theme = "auto",
+        -- theme = {
+        --   normal = { c = { fg = boo_colors.fg, bg = boo_colors.bg } },
+        --   inactive = { c = { fg = boo_colors.fg, bg = boo_colors.bg } },
+        -- },
       },
 
       -- These are to remove the defaults
       sections = {
-        lualine_a = {},
+        lualine_a = { "mode" },
         lualine_b = {},
         lualine_y = {},
         lualine_z = {},
@@ -78,47 +104,47 @@ return {
     end
 
     -- Begining Of The StatusLine
-    ins_left {
-      function()
-        return '▎'
-      end,
-      color = { fg = colors.blue },
-      padding = { left = 0, right = 1 },
-    }
+    -- ins_left {
+    --   function()
+    --     return '▎'
+    --   end,
+    --   color = { fg = boo_colors.blue },
+    --   padding = { left = 0, right = 1 },
+    -- }
 
     -- Icon for diffrent mode:  -- normal -- | -- insert -- | -- visual -- | -- command --
-    ins_left {
-      function()
-        return '' -- 󰊠󰥓󰞇󰓥󰳉
-      end,
-      color = function()
-        -- Auto change color according to neovim's mode
-        local mode_color = {
-          n = colors.green,
-          i = colors.violet,
-          v = colors.blue,
-          [''] = colors.blue,
-          V = colors.blue,
-          c = colors.red,
-          no = colors.red,
-          s = colors.orange,
-          S = colors.orange,
-          [''] = colors.orange,
-          ic = colors.yellow,
-          R = colors.violet,
-          Rv = colors.violet,
-          cv = colors.red,
-          ce = colors.red,
-          r = colors.cyan,
-          rm = colors.cyan,
-          ['r?'] = colors.cyan,
-          ['!'] = colors.red,
-          t = colors.red,
-        }
-        return { fg = mode_color[vim.fn.mode()] }
-      end,
-      padding = { right = 1 },
-    }
+    -- ins_left {
+    --   function()
+    --     return '' -- 󰊠󰥓󰞇󰓥󰳉
+    --   end,
+    --   color = function()
+    --     -- Auto change color according to neovim's mode
+    --     local mode_color = {
+    --       n = boo_colors.green,
+    --       i = boo_colors.violet,
+    --       v = boo_colors.blue,
+    --       [''] = boo_colors.blue,
+    --       V = boo_colors.blue,
+    --       c = boo_colors.red,
+    --       no = boo_colors.red,
+    --       s = boo_colors.orange,
+    --       S = boo_colors.orange,
+    --       [''] = boo_colors.orange,
+    --       ic = boo_colors.yellow,
+    --       R = boo_colors.violet,
+    --       Rv = boo_colors.violet,
+    --       cv = boo_colors.red,
+    --       ce = boo_colors.red,
+    --       r = boo_colors.cyan,
+    --       rm = boo_colors.cyan,
+    --       ['r?'] = boo_colors.cyan,
+    --       ['!'] = boo_colors.red,
+    --       t = boo_colors.red,
+    --     }
+    --     return { fg = mode_color[vim.fn.mode()] }
+    --   end,
+    --   padding = { right = 1 },
+    -- }
 
     -- File Name
     ins_left {
@@ -135,12 +161,11 @@ return {
       }
     }
 
-    ins_left {
-      "searchcount",
-      icon = "󰍉",
-      color = { fg = colors.blue }
-    }
-
+    -- ins_left {
+    --   "searchcount",
+    --   icon = "󰍉",
+    --   color = { fg = colors.blue }
+    -- }
 
     ins_left {
       "diagnostics",
@@ -285,13 +310,13 @@ return {
     -- }
 
     -- End Of The Status Bar
-    ins_right {
-      function()
-        return '▎'
-      end,
-      color = { fg = colors.blue },
-      padding = { left = 1, right = 0 },
-    }
+    -- ins_right {
+    --   function()
+    --     return '▎'
+    --   end,
+    --   color = { fg = boo_colors.blue },
+    --   padding = { left = 1, right = 0 },
+    -- }
 
     -- Now don't forget to initialize lualine
     lualine.setup(config)

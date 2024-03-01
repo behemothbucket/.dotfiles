@@ -3,6 +3,9 @@ local buffalo = require("buffalo.ui")
 -- local dap = require("dap")
 -- local dapui = require("dapui")
 
+-- Arrow
+map("n", "<Space>e", require("arrow.persist").toggle)
+
 -- Buffalo
 map({ "t", "n" }, "<C-e>", buffalo.toggle_buf_menu, { noremap = true })
 map({ 't', 'n' }, '<C-t>', buffalo.toggle_tab_menu, { noremap = true })
@@ -18,34 +21,34 @@ map({ 't', 'n' }, '<C-t>', buffalo.toggle_tab_menu, { noremap = true })
 
 --Zen-mode
 -- map("n", "<Space>z", ":ZenMode<CR>", { noremap = true, silent = true })
-map("n", "<Space>zz", function()
-  require("zen-mode").setup {
-    window = {
-      width = 90,
-      options = {}
-    },
-  }
-  require("zen-mode").toggle()
-  vim.wo.wrap = false
-  vim.wo.number = true
-  vim.wo.rnu = false
-  ApplyTheme()
-end)
+-- map("n", "<Space>zz", function()
+--   require("zen-mode").setup {
+--     window = {
+--       width = 90,
+--       options = {}
+--     },
+--   }
+--   require("zen-mode").toggle()
+--   vim.wo.wrap = false
+--   vim.wo.number = true
+--   vim.wo.rnu = false
+--   ApplyTheme()
+-- end)
 
-map("n", "<Space>zZ", function()
-  require("zen-mode").setup {
-    window = {
-      width = 80,
-      options = {}
-    },
-  }
-  require("zen-mode").toggle()
-  vim.wo.wrap = false
-  vim.wo.number = false
-  vim.wo.rnu = false
-  vim.opt.colorcolumn = "0"
-  ApplyTheme()
-end)
+-- map("n", "<Space>zZ", function()
+--   require("zen-mode").setup {
+--     window = {
+--       width = 80,
+--       options = {}
+--     },
+--   }
+--   require("zen-mode").toggle()
+--   vim.wo.wrap = false
+--   vim.wo.number = false
+--   vim.wo.rnu = false
+--   vim.opt.colorcolumn = "0"
+--   ApplyTheme()
+-- end)
 
 --Projects
 map("n", "<Space>p", ":lua require'telescope'.extensions.projects.projects{}<CR>",
@@ -67,9 +70,9 @@ map("n", "<Bslash>f", ":Oil<CR>", { noremap = true, silent = true })
 -- map("n", "<Tab><Tab>", ":YABSOpen<CR>:call cursor(1, 1)<CR>", { noremap = true, silent = true })
 
 --Harpoon
-map("n", "<Space>a", "<cmd>lua require('harpoon.mark').add_file()<CR><cmd>echo 'Harpoon: Mark added'<CR>",
-  { noremap = true, silent = true })
-map("n", "<Space>e", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true, silent = true })
+-- map("n", "<Space>a", "<cmd>lua require('harpoon.mark').add_file()<CR><cmd>echo 'Harpoon: Mark added'<CR>",
+--   { noremap = true, silent = true })
+-- map("n", "<Space>e", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true, silent = true })
 
 --Window
 -- map("n", "<Space>w", ":lua require('nvim-window').pick()<CR>", { silent = true })

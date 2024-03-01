@@ -60,17 +60,31 @@
 -- })
 
 -- require("boo-colorscheme").use({
--- italic = false, -- toggle italics
--- theme = "boo"
+--   italic = false, -- toggle italics
+--   theme = "boo"
 -- })
 
+require("modus-themes").setup({
+  transparent = false,
+  dim_inactive = false,
+  styles = {
+    comments = { italic = true },
+    keywords = { italic = false },
+  },
+})
+
 function ApplyTheme(color)
-  color = color or "boo"
+  color = color or "modus_operandi"
   vim.cmd.colorscheme(color)
 
-  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-  vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+  -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  -- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 end
 
 ApplyTheme()
+
+-- change the highlight style
+vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
+vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })

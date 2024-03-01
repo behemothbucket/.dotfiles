@@ -83,13 +83,13 @@ opt.list = false
 ---------------------------------------------------------------------------------------------------
 local possible_python_paths = {
   -- Extend the list for possible python path. Will use the 1st possible one
-  os.getenv("HOME") .. "~/qa/autotests_jm_landing/.venv/bin/python3",   -- Python3's venv (dev)
+  os.getenv("HOME") .. "~/qa/autotests_jm_landing/.venv/bin/python3", -- Python3's venv (dev)
   -- os.getenv("HOME") .. "/opt/anaconda3/envs/dev/bin/python", -- MacOS's conda (dev)
   -- os.getenv("HOME") .. "/anaconda3/envs/dev/bin/python",     -- Linux's conda (dev)
-  os.getenv("HOME") .. "/.conda/envs/dev/bin/python",   -- Linux's alternative conda (dev)
+  os.getenv("HOME") .. "/.conda/envs/dev/bin/python", -- Linux's alternative conda (dev)
   -- os.getenv("HOME") .. "/.pyenv/shims/python",               -- pyenv's default path
-  "/usr/bin/python3",                                   -- System default python3
-  "/usr/bin/python",                                    -- System default python
+  "/usr/bin/python3",                                 -- System default python3
+  "/usr/bin/python",                                  -- System default python
 }
 for _, python_path in pairs(possible_python_paths) do
   if io.open(python_path, "r") ~= nil then

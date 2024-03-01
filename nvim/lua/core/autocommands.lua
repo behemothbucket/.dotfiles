@@ -92,6 +92,26 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Illuminate auto update the highlight style on colorscheme change
+vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+  pattern = { "*" },
+  callback = function(ev)
+    vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
+    vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+    vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+  end
+})
+
+-- vim.api.nvim_create_autocmd("WinEnter", {
+--   callback = function()
+--     local floating = vim.api.nvim_win_get_config(0).relative ~= ""
+--     vim.diagnostic.config({
+--       virtual_text = floating,
+--       virtual_lines = not floating,
+--     })
+--   end,
+-- })
+
 -- Delete [No Name] buffers.
 -- api.nvim_create_autocmd("BufHidden", {
 --   desc = "Delete [No Name] buffers",

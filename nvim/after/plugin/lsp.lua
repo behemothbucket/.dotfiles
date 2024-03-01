@@ -62,8 +62,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, opts)
     vim.keymap.set("n", "<Space>ca", vim.lsp.buf.code_action, opts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+    vim.keymap.set("n", "[[", vim.diagnostic.goto_prev)
+    vim.keymap.set("n", "]]", vim.diagnostic.goto_next)
     -- vim.keymap.set("n", "<Space>d", vim.diagnostic.open_float)
     -- vim.keymap.set("n", "<Space>p", vim.diagnostic.setloclist)
     vim.keymap.set("n", "<Space>f", function()
@@ -101,12 +101,11 @@ require('lspconfig.ui.windows').default_options.border = 'rounded'
 
 --Disable inline error text
 vim.diagnostic.config {
-  virtual_text = false,
   underline = false,
   signs = {
     active = signs,
   },
-  float = { border = _border },
+  float = { border = _border, source = "always" },
   update_in_insert = false,
   severity_sort = true
 }
