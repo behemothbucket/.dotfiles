@@ -26,7 +26,7 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    ['<C-y>'] = cmp.config.disable,
+    -- ['<C-y>'] = cmp.config.disable,
     ['<C-c>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
@@ -120,6 +120,6 @@ cmp.setup({
     scrollbar = true,
   },
   experimental = {
-    ghost_text = true,
+    ghost_text = false,
   },
 })
