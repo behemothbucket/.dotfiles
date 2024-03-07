@@ -53,8 +53,8 @@ rose_pine.setup({
     },
 
     highlight_groups = {
-        -- Comment = { fg = "foam" },
-        -- VertSplit = { fg = "muted", bg = "muted" },
+        Normal = { bg = '#0e0b00' },
+        FloatBorder = { bg = 'none' },
     },
 
     before_highlight = function(group, highlight, palette)
@@ -71,6 +71,10 @@ rose_pine.setup({
 })
 
 vim.cmd('colorscheme rose-pine')
+-- vim.api.nvim_set_hl(0, 'Normal', { bg = '#0e0b00' })
+-- vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'Float', { bg = '#0e0b00' })
+
 -- vim.cmd("colorscheme rose-pine-main")
 -- vim.cmd("colorscheme rose-pine-moon")
 -- vim.cmd("colorscheme rose-pine-dawn")

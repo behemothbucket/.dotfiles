@@ -1,4 +1,4 @@
-import = ["C:/Users/Максим/.config/alacritty/github_light_high_contrast.toml"]
+import = ["C:/Users/Максим/.config/alacritty/theme.toml"]
 
 [env]
 LC_CTYPE = "en_US.UTF-8"

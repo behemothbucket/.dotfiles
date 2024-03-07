@@ -6,7 +6,8 @@ end
 dressing.setup({
     win_options = {
         winblend = 10,
-        winhighlight = 'Normal:DressingInputNormalFloat,NormalFloat:DressingInputNormalFloat,FloatBorder:DressingInputFloatBorder',
+        winhighlight =
+        'Normal:DressingInputNormalFloat,NormalFloat:DressingInputNormalFloat,FloatBorder:DressingInputFloatBorder',
     },
     input = {
         enabled = true,

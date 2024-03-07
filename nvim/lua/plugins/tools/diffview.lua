@@ -4,11 +4,11 @@ if not status_ok then
 end
 
 diffview.setup({
-  opts = {
-    view = {
-      merge_tool = {
-        layout = "diff3_mixed",
-      },
-    }
-  }
+    opts = {
+        view = {
+            merge_tool = {
+                layout = 'diff3_mixed',
+            },
+        },
+    },
 })

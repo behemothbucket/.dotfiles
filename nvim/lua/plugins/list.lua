@@ -214,6 +214,15 @@ local plugins = {
     --     config = load_config('ui.vscode-theme'),
     -- },
     { 'rose-pine/neovim', name = 'rose-pine', lazy = false, config = load_config('ui.rose-pine') },
+    -- {
+    --     'phha/zenburn.nvim',
+    --     lazy = false,
+    --     config = function()
+    --         require('zenburn').setup()
+    --         vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+    --         vim.cmd('colorscheme zenburn')
+    --     end,
+    -- },
     {
         'nvim-lualine/lualine.nvim',
         config = load_config('ui.lualine'),
@@ -245,7 +254,7 @@ local plugins = {
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
             'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-nvim-lsp-signature-help',
+            -- 'hrsh7th/cmp-nvim-lsp-signature-help',
             'hrsh7th/cmp-nvim-lua',
             'saadparwaiz1/cmp_luasnip',
         },
@@ -273,6 +282,11 @@ local plugins = {
         'folke/neodev.nvim',
         ft = { 'lua', 'vim' },
         config = load_config('lang.neodev'),
+    },
+    {
+        'AckslD/swenv.nvim',
+        lazy = false,
+        config = load_config('lang.swenv'),
     },
     {
         'VonHeikemen/lsp-zero.nvim',
@@ -303,10 +317,11 @@ local plugins = {
         config = load_config('lang.null-ls'),
         event = { 'BufReadPre', 'BufNewFile' },
     },
-    {
-        'ThePrimeagen/refactoring.nvim',
-        config = load_config('lang.refactoring'),
-    },
+    -- {
+    --     'ThePrimeagen/refactoring.nvim',
+    --     config = load_config('lang.refactoring'),
+    --     lazy = false,
+    -- },
     -- {
     --     'j-hui/fidget.nvim',
     --     config = function()
@@ -466,8 +481,6 @@ local null_ls_sources = {
     'black',
     'isort',
 }
-
--- TODO: code actions
 
 return {
     plugins = plugins,

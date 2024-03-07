@@ -112,6 +112,7 @@ export GOROOT=/usr/lib/go
 export PATH=$PATH:$GOPATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export EDITOR='neovim'
 
 alias m='pgrep -vx tmux > /dev/null && \
         tmux new -d -s delete-me && \
@@ -122,3 +123,10 @@ alias m='pgrep -vx tmux > /dev/null && \
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="$HOME/.local/bin:$PATH"
+export NOTES_DIR=/home/cicerone/Projects/notes
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+ eval "$(pyenv init -)"
+fi
