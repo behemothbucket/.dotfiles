@@ -87,34 +87,33 @@ local servers = {
         usePlaceholders = true,
     },
     lua_ls = {},
-    -- Lua = {
-    --   diagnostics = {
-    --     globals = { 'vim', 'jit' },
-    --     neededFileStatus = true,
-    --     ['codestyle-check'] = 'Any',
-    --   },
-    --   format = {
-    --     enable = true,
-    --     defaultConfig = {
-    --       indent_style = 'space',
-    --       indent_size = '2',
-    --     },
-    --   },
-    --   runtime = {
-    --     version = 'LuaJIT',
-    --   },
-    --   workspace = {
-    --     checkThirdParty = false,
-    --     library = {
-    --       [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-    --       [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-    --     },
-    --     maxPreload = 10000,
-    --     preloadFileSize = 10000,
-    --   },
-    --   telemetry = { enable = false },
-    -- },
-    -- },
+    Lua = {
+        diagnostics = {
+            globals = { 'vim' },
+            -- neededFileStatus = true,
+            -- ['codestyle-check'] = 'Any',
+        },
+        -- format = {
+        --     enable = true,
+        --     defaultConfig = {
+        --         indent_style = 'space',
+        --         indent_size = '2',
+        --     },
+        -- },
+        -- runtime = {
+        --     version = 'LuaJIT',
+        -- },
+        -- workspace = {
+        --     checkThirdParty = false,
+        --     library = {
+        --         [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+        --         [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        --     },
+        --     maxPreload = 10000,
+        --     preloadFileSize = 10000,
+        -- },
+        -- telemetry = { enable = false },
+    },
 }
 
 return servers

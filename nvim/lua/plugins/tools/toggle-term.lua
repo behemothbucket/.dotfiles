@@ -3,6 +3,8 @@ if not status_ok then
     return
 end
 
+local highlights = require('rose-pine.plugins.toggleterm')
+
 local opts = {
     open_mapping = [[<Bslash><Bslash>]],
     shade_filetypes = {},
@@ -11,10 +13,7 @@ local opts = {
     persist_mode = true,
     insert_mappings = false,
     start_in_insert = true,
-    highlights = {
-        FloatBorder = { link = 'FloatBorder' },
-        NormalFloat = { link = 'NormalFloat' },
-    },
+    highlights = highlights,
     size = function(term)
         if term.direction == 'horizontal' then
             return 15

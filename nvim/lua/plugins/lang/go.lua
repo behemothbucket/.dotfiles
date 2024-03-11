@@ -8,7 +8,7 @@ go.setup({
     -- gocoverage_sign = '┃',
     -- duplicate from ./init.lua
     diagnostic = {
-        virtual_text = false,
+        virtual_text = true,
         underline = false,
         severity_sort = true,
         signs = true,

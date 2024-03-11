@@ -130,6 +130,13 @@ end
 --   padding = { right = 1 },
 -- }
 
+-- File Type
+ins_left({
+    'filetype',
+    icon_only = true,
+    padding = { right = 0, left = 2 },
+})
+
 -- File Name
 ins_left({
     'filename',
@@ -150,6 +157,7 @@ ins_left({
     on_click = function()
         require('telescope.builtin').diagnostics()
     end,
+    padding = { left = 1 },
 })
 --
 -- ins_left {
@@ -158,58 +166,38 @@ ins_left({
 -- color = { fg = "#0031a9" }
 -- }
 
--- listen lsp-progress event and refresh lualine
-vim.api.nvim_create_augroup('lualine_augroup', { clear = true })
-vim.api.nvim_create_autocmd('User', {
-    group = 'lualine_augroup',
-    pattern = 'LspProgressStatusUpdated',
-    callback = require('lualine').refresh,
-})
-
-ins_left({
-    require('lsp-progress').progress,
-    on_click = function()
-        vim.cmd([[LspInfo]])
-    end,
-})
-
--- Git Diff
-local function diff_source()
-    local gitsigns = vim.b.gitsigns_status_dict
-    if gitsigns then
-        return {
-            added = gitsigns.added,
-            modified = gitsigns.changed,
-            removed = gitsigns.removed,
-        }
-    end
-end
-
-ins_right({
-    'diff',
-    source = diff_source,
-    on_click = function()
-        vim.cmd('DiffviewOpen')
-    end,
-})
-
--- Git Branch
-ins_right({
-    'branch',
-    icon = '',
-    on_click = function()
-        require('telescope.builtin').git_branches()
-    end,
-    -- icon = '',
-    -- color = { fg = colors.green },
-})
-
--- File Type
-ins_right({
-    'filetype',
-    -- icon_only = true,
-    padding = { right = 2, left = 1 },
-})
+-- -- listen lsp-progress event and refresh lualine
+-- vim.api.nvim_create_augroup('lualine_augroup', { clear = true })
+-- vim.api.nvim_create_autocmd('User', {
+--     group = 'lualine_augroup',
+--     pattern = 'LspProgressStatusUpdated',
+--     callback = require('lualine').refresh,
+-- })
+--
+-- ins_right({
+--     function()
+--         return require('lsp-progress').progress({
+--             max_size = 80,
+--             format = function(messages)
+--                 local active_clients = vim.lsp.get_active_clients()
+--                 if #messages > 0 then
+--                     return table.concat(messages, ' ')
+--                 end
+--                 local client_names = {}
+--                 for _, client in ipairs(active_clients) do
+--                     if client and client.name ~= '' then
+--                         table.insert(client_names, 1, client.name)
+--                     end
+--                 end
+--                 return table.concat(client_names, ', ')
+--             end,
+--         })
+--     end,
+--     icon = { '', align = 'left' },
+--     on_click = function()
+--         vim.cmd([[LspInfo]])
+--     end,
+-- })
 
 -- Custom components using swenv
 local env_stat = function()
@@ -247,7 +235,6 @@ end
 ins_right({
     env_stat,
     icon = '󱔎',
-    padding = { right = 2, left = 0 },
     color = { fg = '#8fb55e' },
     on_click = function()
         require('swenv.api').pick_venv()
@@ -257,30 +244,49 @@ ins_right({
     end,
 })
 
+-- Git Branch
+ins_right({
+    'branch',
+    icon = '',
+    on_click = function()
+        require('telescope.builtin').git_branches()
+    end,
+    padding = { left = 1 },
+    -- icon = '',
+    -- color = { fg = colors.green },
+})
+
+-- Git Diff
+-- local function diff_source()
+--     local gitsigns = vim.b.gitsigns_status_dict
+--     if gitsigns then
+--         return {
+--             added = gitsigns.added,
+--             modified = gitsigns.changed,
+--             removed = gitsigns.removed,
+--         }
+--     end
+-- end
+
+-- ins_right({
+--     'diff',
+--     source = diff_source,
+--     on_click = function()
+--         vim.cmd('DiffviewOpen')
+--     end,
+--     padding = { left = 2 },
+-- })
+
 -- File Encoding
 ins_right({
     'o:encoding',
     cond = conditions.hide_in_width,
-    padding = { right = 2 },
+    padding = { left = 2 },
     -- color = { fg = colors.green, gui = 'bold' },
     -- fmt = string.upper,
 })
 
 -- File Format
-ins_right({
-    'fileformat',
-    padding = { right = 2 },
-    symbols = { unix = 'unix ' },
-    -- color = { fg = colors.green, gui = 'bold' },
-    -- icons_enabled = false,
-    on_click = function()
-        vim.ui.select({ 'unix', 'mac', 'dos' }, { prompt = 'Select fileformat' }, function(ff)
-            if ff ~= nil then
-                vim.opt_local.fileformat = ff
-            end
-        end)
-    end,
-})
 
 -- -- File Size
 -- ins_right {
@@ -298,7 +304,7 @@ ins_right({
 -- File Location
 ins_right({
     'location',
-    padding = { right = 0 },
+    padding = { left = 2, right = 0 },
 })
 
 -- Insert mid section. You can make any number of sections in neovim :)
@@ -319,6 +325,4 @@ ins_right({
 -- }
 
 -- Now don't forget to initialize lualine
-lualine.setup(config)
-lualine.setup(config)
 lualine.setup(config)

@@ -3,16 +3,12 @@ if not status_ok then
     return
 end
 
-lsp_zero.on_attach(function(client, bufnr)
-    lsp_zero.default_keymaps({ buffer = bufnr })
-end)
-
-local installed_servers = require('plugins.list').lsp_servers
+local servers = require('plugins.list').lsp_servers
 local lspconfig = require('lspconfig')
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = installed_servers,
+    ensure_installed = servers,
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()

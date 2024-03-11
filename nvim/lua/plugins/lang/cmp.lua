@@ -63,7 +63,8 @@ cmp.setup({
         }),
     },
     formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
+        -- fields = { 'kind', 'abbr', 'menu' },
+        fields = { 'abbr', 'menu' },
         expandable_indicator = true,
         format = function(entry, vim_item)
             vim_item.menu = ({

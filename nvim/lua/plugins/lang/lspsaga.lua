@@ -9,8 +9,8 @@ saga.setup({
         lines_below = 10,
     },
     scroll_preview = {
-        scroll_down = '<C-d>',
-        scroll_up = '<C-u>',
+        scroll_down = '<C-f>',
+        scroll_up = '<C-b>',
     },
     finder = {
         default = 'imp+def+ref',
@@ -70,7 +70,7 @@ saga.setup({
         keys = {
             quit = 'q',
             exec = '<CR>',
-        }
+        },
     },
     ui = {
         theme = 'round',

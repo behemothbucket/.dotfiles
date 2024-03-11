@@ -25,7 +25,7 @@ null_ls.setup({
         diag.todo_comments,
         diag.trail_space,
         diag.vint,
-        diag.write_good,
+        -- diag.write_good,
         format.prettier,
         format.shfmt,
         format.gofumpt,

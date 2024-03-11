@@ -28,4 +28,16 @@ dressing.setup({
         backend = { 'telescope', 'fzf_lua', 'fzf', 'nui', 'builtin' },
         trim_prompt = true,
     },
+    mappings = {
+        n = {
+            ['<C-c>'] = 'Close',
+            ['<CR>'] = 'Confirm',
+        },
+        i = {
+            ['<C-c>'] = 'Close',
+            ['<CR>'] = 'Confirm',
+            ['<Up>'] = 'HistoryPrev',
+            ['<Down>'] = 'HistoryNext',
+        },
+    },
 })

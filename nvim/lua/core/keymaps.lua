@@ -3,9 +3,6 @@ local map = vim.keymap.set
 -- local dap = require("dap")
 -- local dapui = require("dapui")
 
--- -- Arrow
--- map("n", "<Space>e", require("arrow.persist").toggle)
-
 -- Buffalo
 -- map({ "t", "n" }, "<C-e>", buffalo.toggle_buf_menu, { noremap = true })
 -- map({ 't', 'n' }, '<C-t>', buffalo.toggle_tab_menu, { noremap = true })
@@ -15,6 +12,7 @@ local map = vim.keymap.set
 
 -- Trouble
 -- map("n", "<Space>d", function() require("trouble").open() end)
+map('n', '<Space>q', '<cmd>TroubleToggle quickfix<cr>', { silent = true, noremap = true })
 
 --PackerSync
 -- map("n", "<Space>p", ":PackerSync<CR>", { noremap = true, silent = true, nowait = true })
@@ -141,22 +139,23 @@ map('i', '<C-e>', '<ESC>A')
 map('n', '/', [[/\v]])
 
 -- Hlslens
-map(
-    'n',
-    'n',
-    [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-    { noremap = true, silent = true }
-)
-map(
-    'n',
-    'N',
-    [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-    { noremap = true, silent = true }
-)
-map('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
-map('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
-map('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
-map('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
+-- map(
+--     'n',
+--     'n',
+--     [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+--     { noremap = true, silent = true }
+-- )
+-- map(
+--     'n',
+--     'N',
+--     [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+--     { noremap = true, silent = true }
+-- )
+-- map('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
+-- map('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
+-- map('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
+-- map('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true, silent = true })
+
 -- Noh
 map('n', '<Space>l', '<Cmd>noh<CR>', { noremap = true, silent = true })
 
@@ -273,15 +272,18 @@ map('i', '<A-;>', '<Esc>A;<Esc>i')
 -- mapn", "<Space>nc", ":Neotree close<CR>")
 
 -- Spider
-map({ 'n', 'o', 'x' }, 'w', "<cmd>lua require('spider').motion('w')<CR>", { desc = 'Spider-w' })
-map({ 'n', 'o', 'x' }, 'e', "<cmd>lua require('spider').motion('e')<CR>", { desc = 'Spider-e' })
-map({ 'n', 'o', 'x' }, 'b', "<cmd>lua require('spider').motion('b')<CR>", { desc = 'Spider-b' })
-map({ 'n', 'o', 'x' }, 'ge', "<cmd>lua require('spider').motion('ge')<CR>", { desc = 'Spider-ge' })
+-- map({ 'n', 'o', 'x' }, 'w', "<cmd>lua require('spider').motion('w')<CR>", { desc = 'Spider-w' })
+-- map({ 'n', 'o', 'x' }, 'e', "<cmd>lua require('spider').motion('e')<CR>", { desc = 'Spider-e' })
+-- map({ 'n', 'o', 'x' }, 'b', "<cmd>lua require('spider').motion('b')<CR>", { desc = 'Spider-b' })
+-- map({ 'n', 'o', 'x' }, 'ge', "<cmd>lua require('spider').motion('ge')<CR>", { desc = 'Spider-ge' })
+
+-- Startify
+-- map('n', '<Space>s', '<cmd>Startify<CR>', { noremap = true, silent = true, nowait = true })
 
 -- Spectre
-map(
-    'n',
-    '<C-f>',
-    '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
-    { noremap = true, silent = true }
-)
+-- map(
+--     'n',
+--     '<C-f>',
+--     '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+--     { noremap = true, silent = true }
+-- )
