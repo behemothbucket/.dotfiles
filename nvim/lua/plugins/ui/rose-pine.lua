@@ -52,31 +52,15 @@ rose_pine.setup({
         h6 = 'foam',
     },
 
-    highlight_groups = {
-        Normal = { bg = 'none' },
-        FloatBorder = { bg = 'none' },
-        StatusLine = { bg = '#1c1c1c' },
-        CursorLine = { bg = 'none' },
-    },
-
-    -- before_highlight = function(group, highlight, palette)
-    -- Disable all undercurls
-    -- if highlight.undercurl then
-    --     highlight.undercurl = false
-    -- end
-    --
-    -- Change palette colour
-    -- if highlight.fg == palette.pine then
-    --     highlight.fg = palette.foam
-    -- end
-    -- end,
+    -- highlight_groups = {
+    --     Normal = { bg = 'none' },
+    --     FloatBorder = { bg = 'none' },
+    --     StatusLine = { bg = '#1c1c1c' },
+    --     CursorLine = { bg = 'none' },
+    --     ColorColumn = { bg = '#1c1c1c' },
+    --     Cursor = { bg = '#c5c9c5', fg = '#181618' },
+    --     -- MatchParen = { bg = 'none', fg = '#338fff', bold = true },
+    -- },
 })
 
 vim.cmd('colorscheme rose-pine')
--- vim.api.nvim_set_hl(0, 'Normal', { bg = '#0e0b00' })
--- vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
--- vim.api.nvim_set_hl(0, 'Float', { bg = '#0e0b00' })
-
--- vim.cmd("colorscheme rose-pine-main")
--- vim.cmd("colorscheme rose-pine-moon")
--- vim.cmd("colorscheme rose-pine-dawn")

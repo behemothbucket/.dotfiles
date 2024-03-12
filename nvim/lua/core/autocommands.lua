@@ -129,6 +129,56 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
+-- Toggle diagnostic dependent of insert mode
+vim.api.nvim_create_autocmd('InsertEnter', {
+    desc = 'Hide diagnostic messages in insert mode',
+    callback = function()
+        vim.diagnostic.disable()
+    end,
+})
+
+vim.api.nvim_create_autocmd('InsertLeave', {
+    desc = 'Show diagnostic messages in normal mode',
+    callback = function()
+        vim.diagnostic.enable()
+    end,
+})
+
+-- Delete [No Name] buffers
+vim.api.nvim_create_autocmd('BufHidden', {
+    desc = 'Delete [No Name] buffers',
+    callback = function(data)
+        if data.file == '' and vim.bo[data.buf].buftype == '' and not vim.bo[data.buf].modified then
+            vim.schedule(function()
+                pcall(vim.api.nvim_buf_delete, data.buf, {})
+            end)
+        end
+    end,
+})
+
+-- Inlay hint
+-- if vim.fn.has('nvim-0.10.0') == 1 then
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'Enable inlayHint feature',
+    callback = function(args)
+        local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.supports_method('textDocument/inlayHint', { bufnr = bufnr }) then
+            vim.lsp.inlay_hint.enable(bufnr, true)
+        end
+    end,
+})
+-- end
+
+-- Set default colorcolumn
+vim.api.nvim_create_autocmd('BufWinEnter', {
+    desc = 'Set colorcolumn equals textwidth',
+    callback = function(data)
+        local tw = vim.bo[data.buf].textwidth
+        vim.opt_local.colorcolumn = tostring(tw)
+    end,
+})
+
 -- Illuminate auto update the highlight style on colorscheme change
 -- vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
 --     pattern = { '*' },

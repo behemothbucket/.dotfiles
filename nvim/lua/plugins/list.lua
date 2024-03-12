@@ -5,16 +5,30 @@ local function load_config(package)
 end
 
 local plugins = {
+    -- Tools
     {
         'otavioschwanck/arrow.nvim',
         opts = {
             show_icons = true,
-            leader_key = ';', -- Recommended to be a single key
+            leader_key = ';',
         },
         config = load_config('tools.arrow'),
         lazy = false,
     },
-    -- Tools
+    {
+        'b0o/incline.nvim',
+        config = function()
+            require('incline').setup()
+        end,
+        -- Optional: Lazy load Incline
+        event = 'VeryLazy',
+    },
+    {
+        'NvChad/nvim-colorizer.lua',
+        enabled = true,
+        lazy = false,
+        config = load_config('tools.colorizer'),
+    },
     -- {
     --     'mhinz/vim-startify',
     --     lazy = false,
@@ -96,6 +110,8 @@ local plugins = {
     {
         'folke/flash.nvim',
         config = load_config('tools.flash'),
+        enabled = true,
+        event = 'VeryLazy',
         keys = {
             {
                 's',
@@ -112,22 +128,6 @@ local plugins = {
                     require('flash').treesitter()
                 end,
                 desc = 'Flash Treesitter',
-            },
-            {
-                'r',
-                mode = 'o',
-                function()
-                    require('flash').remote()
-                end,
-                desc = 'Remote Flash',
-            },
-            {
-                'R',
-                mode = { 'o', 'x' },
-                function()
-                    require('flash').treesitter_search()
-                end,
-                desc = 'Treesitter Search',
             },
         },
     },
@@ -301,7 +301,12 @@ local plugins = {
     --     config = function()
     --         require('refactoring').setup({})
     --     end,
-    -- },
+    -- }
+    {
+        'Wansmer/symbol-usage.nvim',
+        event = 'LspAttach', -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
+        config = load_config('lang.symbol-usage'),
+    },
     {
         'AckslD/swenv.nvim',
         lazy = false,

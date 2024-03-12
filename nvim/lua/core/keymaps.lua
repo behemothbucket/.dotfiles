@@ -182,14 +182,13 @@ map('n', '<F3>', ':e ~/.config/nvim/lua/<CR>', { noremap = true, silent = true }
 -- Telescope
 map('n', 'lg', '<cmd>Telescope live_grep<CR>', { noremap = true, silent = true })
 map('n', 'lf', '<cmd>Telescope find_files<CR>', { noremap = true, silent = true })
-map({ 't', 'n' }, '<C-e>', '<cmd>Telescope buffers<CR>', { noremap = true, silent = true })
 
 --Source current file
 map('n', '<Space>ss', "<cmd>w | so%<CR><cmd>echo 'Sourced'<cr>", { noremap = true, nowait = true })
 
 --Tab navigation
-map('n', '<A-Left>', ':bprevious<CR>', { silent = true })
-map('n', '<A-Right>', ':bnext<CR>', { silent = true })
+-- map('n', '<A-Left>', ':bprevious<CR>', { silent = true })
+-- map('n', '<A-Right>', ':bnext<CR>', { silent = true })
 -- Delete a buffer, without closing the window, see https://stackoverflow.com/q/4465095/6064933
 map('n', '<A-d>', '<cmd>bprevious <bar> bdelete #<cr>', { silent = true })
 map('n', '<A-q>', ':wqa<CR>', { silent = true })
@@ -236,6 +235,9 @@ end, {
 
 -- Close quickfix list
 -- map("n", "<Space>q", ":cclose<CR>:echo 'Quickfix closed'<CR>", { noremap = true })
+
+-- Swenv
+map('n', '<Space>e', '<cmd>Swenv<CR>', { noremap = true, silent = true })
 
 -- insert semicolon in the end
 map('i', '<A-;>', '<Esc>A;<Esc>i')

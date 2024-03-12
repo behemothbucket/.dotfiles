@@ -1,9 +1,5 @@
 import = ["C:/Users/Максим/.config/alacritty/theme.toml"]
 
-[env]
-LC_CTYPE = "en_US.UTF-8"
-TERM = "xterm-256color"
-
 [shell]
 program = "ubuntu"
 
@@ -23,7 +19,7 @@ general = "Alacritty"
 instance = "Alacritty"
 
 [font]
-size = 14
+size = 18
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
@@ -49,12 +45,12 @@ y = 0
 draw_bold_text_with_bright_colors = true
 
 [colors.cursor]
-text                  = "#B4BEFE"
-cursor                = "#000000"
+text                  = "#181618"
+cursor                = "#c5c9c5"
 
 [colors.vi_mode_cursor]
-text                  = "#1E1E2E"
-cursor                = "#B4BEFE"
+text                  = "#181618"
+cursor                = "#c5c9c5"
 
 [cursor.style]
 shape                 = "Block"

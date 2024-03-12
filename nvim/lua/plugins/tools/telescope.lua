@@ -4,3 +4,4 @@ if not status_ok then
 end
 
 telescope.setup()
+require('telescope').load_extension('projects')

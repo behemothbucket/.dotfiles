@@ -7,7 +7,6 @@ local options = {
     breakindent = true,
     clipboard = 'unnamedplus',             -- allows neovim to access the system clipboard
     cmdheight = 1,                         -- more space in the neovim command line for displaying messages
-    colorcolumn = '120',
     completeopt = 'menu,menuone,noselect', -- mostly just for cmp
     conceallevel = 0,                      -- so that `` is visible in markdown files
     confirm = true,                        -- Confirm to save changes before exiting modified buffer
@@ -102,3 +101,14 @@ end
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
+
+---------------------------------------------------------------------------------------------------
+-- Colorsheme
+---------------------------------------------------------------------------------------------------
+-- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'StatusLine', { bg = '#1c1c1c' })
+-- vim.api.nvim_set_hl(0, 'CursorLine', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#1c1c1c' })
+-- vim.api.nvim_set_hl(0, 'Cursor', { bg = '#c5c9c5', fg = '#181618' })
+-- vim.api.nvim_set_hl(0, 'MatchParen', { bg = 'none', fg = '#338fff', bold = true })
